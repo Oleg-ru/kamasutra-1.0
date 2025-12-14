@@ -1,6 +1,7 @@
 import './App.css'
 import Technologies from "./Technologies.jsx";
 import Header from "./Header.jsx";
+import Footer from "./Footer.jsx";
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
         <>
             <Header />
             <Technologies />
+            <Footer />
         </>
     )
 }
