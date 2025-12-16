@@ -1,5 +1,9 @@
 .item {
+    padding: 1rem;
+    margin: 10px;
     color: greenyellow;
+    border: 2px solid black;
+    border-radius: 10px;
 
     & img {
         width: 100px;
@@ -10,7 +14,16 @@
 }
 
 .like {
-    color: red;
-    font-size: 1.5rem;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    & .likeHeart {
+        color: red;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    & .likeCount {
+        margin-right: 5px;
+    }
 }
