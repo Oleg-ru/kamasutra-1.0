@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Profile.module.css';
+import MyPosts from "./MyPosts/MyPosts.jsx";
 
 function Profile() {
     return (
@@ -12,20 +13,7 @@ function Profile() {
                 {/*<img src="https://web-tool.org/create-round-image/rectangular-image.jpg" alt=""/>*/}
                 ava + desc
             </div>
-            <div>
-                My posts
-                <div>
-                    New post
-                </div>
-            </div>
-            <div className={styles.posts}>
-                <div className={styles.item}>
-                    post1
-                </div>
-                <div className={styles.item}>
-                    post 2
-                </div>
-            </div>
+            <MyPosts />
         </div>
     );
 }
