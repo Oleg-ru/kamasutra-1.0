@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './Profile.module.css';
 
 function Profile() {
     return (
-        <div className='content'>
+        <div className={styles.content}>
             <div>
                 <img src="https://assets.monica.im/tools-web/_next/static/media/mobile_upscale.e93d7497.webp"
                      alt=""/>
@@ -17,11 +18,11 @@ function Profile() {
                     New post
                 </div>
             </div>
-            <div>
-                <div>
+            <div className={styles.posts}>
+                <div className={styles.item}>
                     post1
                 </div>
-                <div>
+                <div className={styles.item}>
                     post 2
                 </div>
             </div>

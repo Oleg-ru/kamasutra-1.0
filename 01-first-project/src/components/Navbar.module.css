@@ -1,0 +1,14 @@
+.nav {
+    grid-area: n;
+    background-color: rosybrown;
+}
+
+.item {
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.item.active {
+    color: gold;
+}
