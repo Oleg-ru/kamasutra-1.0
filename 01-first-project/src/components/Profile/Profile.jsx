@@ -4,7 +4,7 @@ import MyPosts from "./MyPosts/MyPosts.jsx";
 
 function Profile() {
     return (
-        <div className={styles.content}>
+        <div>
             <div>
                 <img src="https://assets.monica.im/tools-web/_next/static/media/mobile_upscale.e93d7497.webp"
                      alt=""/>
