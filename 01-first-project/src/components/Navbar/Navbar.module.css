@@ -1,14 +1,23 @@
 .nav {
     grid-area: n;
+    padding: 10px;
     background-color: rosybrown;
+}
+
+a {
+    text-decoration: none;
 }
 
 .item {
     color: white;
     text-transform: uppercase;
     font-size: 1.2rem;
-}
 
-.item.active {
-    color: gold;
+    &.activeLink {
+        color: gold;
+
+        &::after {
+            content: ' 👈';
+        }
+    }
 }

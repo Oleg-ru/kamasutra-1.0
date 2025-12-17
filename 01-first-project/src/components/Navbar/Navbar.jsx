@@ -3,13 +3,16 @@ import styles from './Navbar.module.css'
 import {NavLink} from "react-router";
 
 function Navbar() {
+
+    const navStyle = ({isActive}) => (isActive ? `${styles.activeLink} ${styles.item}` : `${styles.item}`);
+    
     return (
         <nav className={styles.nav}>
-            <NavLink to="/profile" className={styles.item}>Profile</NavLink>
-            <NavLink to="/dilaogs" className={`${styles.item} ${styles.active}`}>Message</NavLink>
-            <NavLink to="/news" className={styles.item}>News</NavLink>
-            <NavLink to="/music" className={styles.item}>Music</NavLink>
-            <NavLink to="/settings" className={styles.item}>Settings</NavLink>
+            <NavLink to="/profile" className={navStyle}>Profile</NavLink>
+            <NavLink to="/dilaogs" className={navStyle}>Message</NavLink>
+            <NavLink to="/news" className={navStyle}>News</NavLink>
+            <NavLink to="/music" className={navStyle}>Music</NavLink>
+            <NavLink to="/settings" className={navStyle}>Settings</NavLink>
         </nav>
     );
 }
