@@ -6,9 +6,11 @@ function MyPosts() {
     return (
         <div className={styles.posts}>
             <div>
-                My posts
+                <h3 className={styles.head}>My posts</h3>
                 <div>
-                    <textarea cols="30" rows="10"></textarea>
+                    <div>
+                        <textarea className={styles.textarea}></textarea>
+                    </div>
                     <button>Add post</button>
                 </div>
             </div>

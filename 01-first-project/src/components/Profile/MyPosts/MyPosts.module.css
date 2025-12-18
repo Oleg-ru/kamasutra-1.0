@@ -1,3 +1,19 @@
 .posts {
+    padding: 20px;
+    margin-bottom: 50px;
+    border-bottom: 25px solid teal;
+    border-top: 25px solid teal;
+    border-radius: 50px;
+}
 
+.head {
+    text-align: center;
+}
+
+.textarea {
+    width: 99%;
+    height: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    resize: none;
 }
