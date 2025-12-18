@@ -1,0 +1,40 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    height: 100%;
+}
+
+.dialogsItems {
+    padding: 3px;
+    border: 1px solid white;
+}
+
+.dialog {
+    margin: 3px 0;
+    border-bottom: 1px solid white;
+
+    &.active {
+        color: gold;
+        font-weight: bold;
+        text-align: right;
+
+        &::before {
+            content: "➡️ ";
+        }
+    }
+
+}
+
+.messages {
+    padding: 5px;
+    margin-left: 10px;
+    border: 1px solid white;
+}
+
+.message {
+    padding: 5px 10px;
+    margin-bottom: 3px;
+    width: max-content;
+    border: 1px solid white;
+    border-radius: 10px;
+}
