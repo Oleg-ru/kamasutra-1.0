@@ -1,31 +1,7 @@
 import React from 'react';
 import styles from './Dialogs.module.css'
-import {NavLink} from "react-router";
-
-const DialogItem = (props) => {
-
-    const {
-        name,
-        id
-    } = props;
-
-    return (
-        <div className={styles.dialog}>
-            <NavLink to={`/dialogs/${id}`}>{name}</NavLink>
-        </div>
-    )
-};
-
-const Message = (props) => {
-
-    const {
-        message,
-    } = props;
-
-    return (
-        <div className={styles.message}>{message}</div>
-    )
-};
+import DialogItem from "./DialogItem/DialogItem.jsx";
+import Message from "./Message/Message.jsx";
 
 const dialogsData = [
     {id: 1, name: 'Vladimir'},

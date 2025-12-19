@@ -1,0 +1,15 @@
+.dialog {
+    margin: 3px 0;
+    border-bottom: 1px solid white;
+
+    &.active {
+        color: gold;
+        font-weight: bold;
+        text-align: right;
+
+        & a::before {
+            content: "➡️ ";
+        }
+    }
+
+}
