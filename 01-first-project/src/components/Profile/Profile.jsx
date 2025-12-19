@@ -3,11 +3,16 @@ import styles from './Profile.module.css'
 import MyPosts from "./MyPosts/MyPosts.jsx";
 import ProfileInfo from "./ProfileInfo/ProfileInfo.jsx";
 
-function Profile() {
+function Profile(props) {
+
+    const {
+        postData,
+    } = props;
+
     return (
         <div>
             <ProfileInfo />
-            <MyPosts />
+            <MyPosts postData={postData}/>
         </div>
     );
 }

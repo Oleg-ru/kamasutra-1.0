@@ -2,14 +2,11 @@ import React from 'react';
 import styles from './MyPosts.module.css'
 import Post from "./Post/Post.jsx";
 
-function MyPosts() {
+function MyPosts(props) {
 
-    const postData = [
-        {id: 1, message: "Вацап бро 🙌", likeCount: "15"},
-        {id: 2, message: "Я изучаю React, а ты?", likeCount: "20"},
-        {id: 3, message: "Давай вместе", likeCount: "10500"},
-        {id: 4, message: "Нас уже 10500!!!!", likeCount: "1000001"},
-    ];
+    const {
+        postData,
+    } = props;
 
     return (
         <div className={styles.posts}>
