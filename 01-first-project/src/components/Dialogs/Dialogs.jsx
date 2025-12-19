@@ -45,10 +45,12 @@ function Dialogs() {
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogsItems}>
-                {dialogsData.map(({id, name}) => <DialogItem key={id} id={id} name={name} /> )}
+                {dialogsData
+                    .map(({id, name}) => <DialogItem key={id} id={id} name={name} /> )}
             </div>
             <div className={styles.messages}>
-                {messageData.map(({id, message}) => <Message key={id} id={id} message={message} /> )}
+                {messageData
+                    .map(({id, message}) => <Message key={id} id={id} message={message} /> )}
             </div>
         </div>
     );
