@@ -3,6 +3,14 @@ import styles from './MyPosts.module.css'
 import Post from "./Post/Post.jsx";
 
 function MyPosts() {
+
+    const postData = [
+        {id: 1, message: "Вацап бро 🙌", likeCount: "15"},
+        {id: 2, message: "Я изучаю React, а ты?", likeCount: "20"},
+        {id: 3, message: "Давай вместе", likeCount: "10500"},
+        {id: 4, message: "Нас уже 10500!!!!", likeCount: "1000001"},
+    ];
+
     return (
         <div className={styles.posts}>
             <div>
@@ -14,11 +22,7 @@ function MyPosts() {
                     <button>Add post</button>
                 </div>
             </div>
-            <Post message='Вацап бро 🙌' likeCount='15'/>
-            <Post message='Я изучаю React, а ты?' likeCount='20'/>
-            <Post />
-            <Post />
-            <Post />
+            {postData.map(({id, message, likeCount}) => <Post key={id} message={message} likeCount={likeCount} />)}
         </div>
     );
 }
