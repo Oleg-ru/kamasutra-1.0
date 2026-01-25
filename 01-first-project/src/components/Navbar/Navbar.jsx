@@ -1,19 +1,26 @@
 import React from 'react';
 import styles from './Navbar.module.css'
 import {NavLink} from "react-router";
+import TopFriends from "../Friends/TopFriends/TopFriends.jsx";
 
-function Navbar() {
+function Navbar(props) {
+
+    const {friendsPage} = props;
 
     const navStyle = ({isActive}) => (isActive ? `${styles.activeLink} ${styles.item}` : `${styles.item}`);
     
     return (
-        <nav className={styles.nav}>
-            <NavLink to="/profile" className={navStyle}>Profile</NavLink>
-            <NavLink to="/dialogs/*" className={navStyle}>Message</NavLink>
-            <NavLink to="/news" className={navStyle}>News</NavLink>
-            <NavLink to="/music" className={navStyle}>Music</NavLink>
-            <NavLink to="/settings" className={navStyle}>Settings</NavLink>
-        </nav>
+            <nav className={styles.nav}>
+                <NavLink to="/profile" className={navStyle}>Profile</NavLink>
+                <NavLink to="/dialogs/*" className={navStyle}>Message</NavLink>
+                <NavLink to="/news" className={navStyle}>News</NavLink>
+                <NavLink to="/music" className={navStyle}>Music</NavLink>
+                <NavLink to="/settings" className={navStyle}>Settings</NavLink>
+                <NavLink to="/friends" className={navStyle}>
+                    Friends
+                </NavLink>
+                <TopFriends friendsPage={friendsPage}/>
+            </nav>
     );
 }
 

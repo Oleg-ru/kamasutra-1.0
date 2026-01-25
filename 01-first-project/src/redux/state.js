@@ -20,7 +20,14 @@ const state = {
             {id: 2, name: 'Anton', avatar: "https://cdn-icons-png.flaticon.com/512/4792/4792944.png"},
             {id: 3, name: 'Anastasia', avatar: "https://img.freepik.com/free-vector/woman-with-long-dark-hair_1308-176666.jpg"},
         ],
-    }
+    },
+    friendsPage: {
+        topThree: [
+            {id: 1, name: "Oleg", logo: "🥽"},
+            {id: 2, name: "Anastasia", logo: "🎪"},
+            {id: 3, name: "Egor", logo: "🎡"},
+        ]
+    },
 }
 
 export default state;

@@ -7,6 +7,7 @@ import {Route, Routes} from "react-router";
 import News from "./components/News/News.jsx";
 import Music from "./components/Music/Music.jsx";
 import Settings from "./components/Settings/Settings.jsx";
+import Friends from "./components/Friends/Friends.jsx";
 
 
 function App(props) {
@@ -14,14 +15,15 @@ function App(props) {
     const {
         state: {
             profilePage,
-            dialogsPage
+            dialogsPage,
+            friendsPage,
         }
     } = props;
 
     return (
         <div className='app-wrapper'>
             <Header />
-            <Navbar />
+            <Navbar friendsPage={friendsPage}/>
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route path='profile' element={<Profile state={profilePage}/>}/>
@@ -29,6 +31,7 @@ function App(props) {
                     <Route path='news' element={<News />}/>
                     <Route path='music' element={<Music />}/>
                     <Route path='settings' element={<Settings />}/>
+                    <Route path='friends' element={<Friends />}/>
                 </Routes>
             </div>
         </div>

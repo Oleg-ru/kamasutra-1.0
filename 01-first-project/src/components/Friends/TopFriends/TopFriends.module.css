@@ -1,0 +1,16 @@
+.friendContainer {
+    display: flex;
+    gap: 5px;
+}
+
+.friend {
+    border: 1px solid #646cff;
+    border-radius: 5px;
+    padding: 3px;
+    transition: all 0.2s;
+}
+
+.friend:hover {
+    transform: scale(1.05);
+    background-color: #646cff;
+}
