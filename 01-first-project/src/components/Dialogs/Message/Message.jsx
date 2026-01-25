@@ -1,14 +1,30 @@
 import React from 'react';
 import styles from './Message.module.css'
+import clsx from "clsx";
 
 const Message = (props) => {
 
     const {
-        message,
+        message: {
+            message,
+            isSelf,
+            avatar,
+        }
     } = props;
 
+    const classes = clsx({
+        [styles.message]: true,
+        [styles.myMessage]: isSelf,
+        [styles.interlocutorMessage]: !isSelf,
+    })
+
+    console.log(classes)
+
     return (
-        <div className={styles.message}>{message}</div>
+        <div className={classes}>
+            <img className={styles.avatar} src={avatar} alt="avatar_message"/>
+            {message}
+        </div>
     )
 };
 

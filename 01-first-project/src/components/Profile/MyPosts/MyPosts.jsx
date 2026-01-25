@@ -5,7 +5,7 @@ import Post from "./Post/Post.jsx";
 function MyPosts(props) {
 
     const {
-        postData,
+        posts,
     } = props;
 
     return (
@@ -19,7 +19,7 @@ function MyPosts(props) {
                     <button>Add post</button>
                 </div>
             </div>
-            {postData.map(({id, message, likeCount}) => <Post key={id} message={message} likeCount={likeCount} />)}
+            {posts.map(({id, message, likeCount}) => <Post key={id} message={message} likeCount={likeCount} />)}
         </div>
     );
 }

@@ -12,9 +12,10 @@ import Settings from "./components/Settings/Settings.jsx";
 function App(props) {
 
     const {
-        postData,
-        dialogs,
-        messages,
+        state: {
+            profilePage,
+            dialogsPage
+        }
     } = props;
 
     return (
@@ -23,8 +24,8 @@ function App(props) {
             <Navbar />
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='profile' element={<Profile postData={postData}/>}/>
-                    <Route path='dialogs/*' element={<Dialogs dialogs={dialogs} messages={messages}/>}/>
+                    <Route path='profile' element={<Profile state={profilePage}/>}/>
+                    <Route path='dialogs/*' element={<Dialogs state={dialogsPage}/>}/>
                     <Route path='news' element={<News />}/>
                     <Route path='music' element={<Music />}/>
                     <Route path='settings' element={<Settings />}/>

@@ -6,19 +6,21 @@ import Message from "./Message/Message.jsx";
 function Dialogs(props) {
 
     const {
-        dialogs,
-        messages
+        state: {
+            dialogs,
+            messages
+        }
     } = props;
 
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogsItems}>
                 {dialogs
-                    .map(({id, name}) => <DialogItem key={id} id={id} name={name} /> )}
+                    .map(dialog => <DialogItem key={dialog.id} dialog={dialog}/> )}
             </div>
             <div className={styles.messages}>
                 {messages
-                    .map(({id, message}) => <Message key={id} id={id} message={message} /> )}
+                    .map(message => <Message key={message.id} message={message}/> )}
             </div>
         </div>
     );

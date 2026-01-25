@@ -1,4 +1,6 @@
 .dialog {
+    display: flex;
+    gap: 5px;
     margin: 3px 0;
     border-bottom: 1px solid white;
 
@@ -12,4 +14,9 @@
         }
     }
 
+}
+
+.avatar {
+    width: 20px;
+    border-radius: 50%;
 }

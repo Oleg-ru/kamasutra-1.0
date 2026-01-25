@@ -26,6 +26,9 @@
 }
 
 .messages {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
     padding: 5px;
     margin-left: 10px;
     border: 1px solid white;

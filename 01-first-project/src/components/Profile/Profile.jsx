@@ -6,13 +6,15 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo.jsx";
 function Profile(props) {
 
     const {
-        postData,
+        state: {
+            posts,
+        }
     } = props;
 
     return (
         <div>
             <ProfileInfo />
-            <MyPosts postData={postData}/>
+            <MyPosts posts={posts}/>
         </div>
     );
 }

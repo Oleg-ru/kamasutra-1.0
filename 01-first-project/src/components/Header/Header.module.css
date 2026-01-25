@@ -1,10 +1,12 @@
 .header {
     grid-area: h;
-    background-color: darkgreen;
+    background: linear-gradient(90deg in oklab, rgba(228, 86, 86, 0.7), #4949dc, #105910);
 }
 
 .header {
     & img {
-        width: 20px;
+        width: 60px;
+        height: 100%;
+        border-radius: 50%;
     }
 }
