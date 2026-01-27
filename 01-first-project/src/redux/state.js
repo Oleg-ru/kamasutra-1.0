@@ -30,4 +30,14 @@ const state = {
     },
 }
 
+export const addPost = (postMessage) => {
+    const newPost = {
+        id: crypto.randomUUID(),
+        message: postMessage,
+        likeCount: "0",
+    };
+
+    state.profilePage.posts.push(newPost);
+};
+
 export default state;

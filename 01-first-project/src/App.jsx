@@ -17,7 +17,9 @@ function App(props) {
             profilePage,
             dialogsPage,
             friendsPage,
-        }
+
+        },
+        addPost,
     } = props;
 
     return (
@@ -26,7 +28,7 @@ function App(props) {
             <Navbar friendsPage={friendsPage}/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='profile' element={<Profile state={profilePage}/>}/>
+                    <Route path='profile' element={<Profile state={profilePage} addPost={addPost}/>}/>
                     <Route path='dialogs/*' element={<Dialogs state={dialogsPage}/>}/>
                     <Route path='news' element={<News />}/>
                     <Route path='music' element={<Music />}/>

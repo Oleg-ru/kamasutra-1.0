@@ -41,3 +41,18 @@
     border: 1px solid white;
     border-radius: 10px;
 }
+
+/*Форма нового сообщения*/
+
+.sendMessageContainer {
+    display: flex;
+    gap: 20px;
+}
+
+.textArea {
+    width: 100%;
+    height: 3rem;
+    resize: none;
+    padding: 10px;
+    border-radius: 10px;
+}
