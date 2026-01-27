@@ -1,14 +1,5 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
-import {BrowserRouter} from "react-router";
-import state, {addPost} from "./redux/state.js";
+import state from "./redux/state.js";
+import {renderEntireTree} from "./render.jsx";
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <BrowserRouter>
-        <App state={state} addPost={addPost}/>
-    </BrowserRouter>
-  </StrictMode>,
-)
+renderEntireTree(state)
