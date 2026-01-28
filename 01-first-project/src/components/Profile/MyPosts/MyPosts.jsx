@@ -4,19 +4,21 @@ import Post from "./Post/Post.jsx";
 
 function MyPosts(props) {
 
-    console.log(props)
-
     const {
         posts,
         addPost: addNewPost,
+        newPostText,
+        updateNewPostText,
     } = props;
 
     const newPostElement = useRef(null);
 
     const addPost = () => {
-        const text = newPostElement.current.value;
-        addNewPost(text);
-        newPostElement.current.value = '';
+        addNewPost();
+    };
+
+    const onPostChange = (e) => {
+        updateNewPostText(e.target.value);
     };
 
     return (
@@ -25,7 +27,11 @@ function MyPosts(props) {
                 <h3 className={styles.head}>My posts</h3>
                 <div>
                     <div>
-                        <textarea className={styles.textarea} ref={newPostElement}></textarea>
+                        <textarea className={styles.textarea}
+                                  ref={newPostElement}
+                                  value={newPostText}
+                                  onChange={onPostChange}
+                        />
                     </div>
                     <button onClick={addPost}>Add post</button>
                 </div>

@@ -8,6 +8,7 @@ import News from "./components/News/News.jsx";
 import Music from "./components/Music/Music.jsx";
 import Settings from "./components/Settings/Settings.jsx";
 import Friends from "./components/Friends/Friends.jsx";
+import {addMessage, updateNewMessageText} from "./redux/state.js";
 
 
 function App(props) {
@@ -20,6 +21,9 @@ function App(props) {
 
         },
         addPost,
+        updateNewPostText,
+        addMessage,
+        updateNewMessageText,
     } = props;
 
     return (
@@ -28,8 +32,16 @@ function App(props) {
             <Navbar friendsPage={friendsPage}/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='profile' element={<Profile state={profilePage} addPost={addPost}/>}/>
-                    <Route path='dialogs/*' element={<Dialogs state={dialogsPage}/>}/>
+                    <Route path='profile' element={<Profile state={profilePage}
+                                                            addPost={addPost}
+                                                            updateNewPostText={updateNewPostText}
+                                                   />}
+                    />
+                    <Route path='dialogs/*' element={<Dialogs state={dialogsPage}
+                                                              addMessage={addMessage}
+                                                              updateNewMessageText={updateNewMessageText}
+                                                     />}
+                    />
                     <Route path='news' element={<News />}/>
                     <Route path='music' element={<Music />}/>
                     <Route path='settings' element={<Settings />}/>

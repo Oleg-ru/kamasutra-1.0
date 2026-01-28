@@ -8,6 +8,7 @@ const state = {
             {id: 3, message: "Давай вместе", likeCount: "10500"},
             {id: 4, message: "Нас уже 10500!!!!", likeCount: "1000001"},
         ],
+        newPostText: 'Расскажи что нового....'
     },
     dialogsPage: {
         messages: [
@@ -22,6 +23,7 @@ const state = {
             {id: 2, name: 'Anton', avatar: "https://cdn-icons-png.flaticon.com/512/4792/4792944.png"},
             {id: 3, name: 'Anastasia', avatar: "https://img.freepik.com/free-vector/woman-with-long-dark-hair_1308-176666.jpg"},
         ],
+        newMessageText: 'New message here....'
     },
     friendsPage: {
         topThree: [
@@ -32,15 +34,41 @@ const state = {
     },
 }
 
-export const addPost = (postMessage) => {
+window.state = state;
+
+export const addPost = () => {
     const newPost = {
         id: crypto.randomUUID(),
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likeCount: "0",
     };
 
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
     renderEntireTree(state)
+};
+
+export const updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+    renderEntireTree(state)
+};
+
+export const addMessage = () => {
+    const newMessage = {
+        id: crypto.randomUUID(),
+        message: state.dialogsPage.newMessageText,
+        isSelf: true,
+        avatar: "https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174669.jpg",
+    };
+
+    state.dialogsPage.messages.push(newMessage);
+    state.dialogsPage.newMessageText = '';
+    renderEntireTree(state);
+};
+
+export const updateNewMessageText = (newText) => {
+    state.dialogsPage.newMessageText = newText;
+    renderEntireTree(state);
 };
 
 export default state;

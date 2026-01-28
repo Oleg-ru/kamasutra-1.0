@@ -8,15 +8,24 @@ function Dialogs(props) {
     const {
         state: {
             dialogs,
-            messages
-        }
+            messages,
+            newMessageText,
+        },
+        addMessage,
+        updateNewMessageText,
     } = props;
+
+    console.log(props)
 
     const newSendMessage = useRef(null);
 
     const sendMessage = () => {
         const newMessage = newSendMessage.current.value;
-        alert(newMessage)
+        addMessage(newMessage)
+    };
+
+    const updateChangeMessage = (e) => {
+        updateNewMessageText(e.target.value)
     };
 
     return (
@@ -29,7 +38,11 @@ function Dialogs(props) {
                 {messages
                     .map(message => <Message key={message.id} message={message}/> )}
                 <div className={styles.sendMessageContainer}>
-                    <textarea className={styles.textArea} ref={newSendMessage}></textarea>
+                    <textarea className={styles.textArea}
+                              ref={newSendMessage}
+                              onChange={updateChangeMessage}
+                              value={newMessageText}
+                    />
                     <button onClick={sendMessage}>Send</button>
                 </div>
             </div>

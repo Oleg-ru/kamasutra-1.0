@@ -8,15 +8,20 @@ function Profile(props) {
     const {
         state: {
             posts,
-
+            newPostText,
         },
         addPost,
+        updateNewPostText,
     } = props;
 
     return (
         <div>
             <ProfileInfo />
-            <MyPosts posts={posts} addPost={addPost}/>
+            <MyPosts posts={posts}
+                     addPost={addPost}
+                     newPostText={newPostText}
+                     updateNewPostText={updateNewPostText}
+            />
         </div>
     );
 }

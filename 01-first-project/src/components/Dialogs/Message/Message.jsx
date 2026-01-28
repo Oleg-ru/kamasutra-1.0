@@ -18,8 +18,6 @@ const Message = (props) => {
         [styles.interlocutorMessage]: !isSelf,
     })
 
-    console.log(classes)
-
     return (
         <div className={classes}>
             <img className={styles.avatar} src={avatar} alt="avatar_message"/>
