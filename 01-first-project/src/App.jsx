@@ -8,7 +8,6 @@ import News from "./components/News/News.jsx";
 import Music from "./components/Music/Music.jsx";
 import Settings from "./components/Settings/Settings.jsx";
 import Friends from "./components/Friends/Friends.jsx";
-import {addMessage, updateNewMessageText} from "./redux/state.js";
 
 
 function App(props) {
