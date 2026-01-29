@@ -19,10 +19,7 @@ function App(props) {
             friendsPage,
 
         },
-        addPost,
-        updateNewPostText,
-        addMessage,
-        updateNewMessageText,
+        dispatch,
     } = props;
 
     return (
@@ -32,13 +29,11 @@ function App(props) {
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route path='profile' element={<Profile state={profilePage}
-                                                            addPost={addPost}
-                                                            updateNewPostText={updateNewPostText}
+                                                            dispatch={dispatch}
                                                    />}
                     />
                     <Route path='dialogs/*' element={<Dialogs state={dialogsPage}
-                                                              addMessage={addMessage}
-                                                              updateNewMessageText={updateNewMessageText}
+                                                              dispatch={dispatch}
                                                      />}
                     />
                     <Route path='news' element={<News />}/>

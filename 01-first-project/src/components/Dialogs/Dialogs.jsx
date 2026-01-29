@@ -11,21 +11,17 @@ function Dialogs(props) {
             messages,
             newMessageText,
         },
-        addMessage,
-        updateNewMessageText,
+        dispatch,
     } = props;
-
-    console.log(props)
 
     const newSendMessage = useRef(null);
 
     const sendMessage = () => {
-        const newMessage = newSendMessage.current.value;
-        addMessage(newMessage)
+        dispatch({type: "ADD-MESSAGE"})
     };
 
     const updateChangeMessage = (e) => {
-        updateNewMessageText(e.target.value)
+        dispatch({type: 'UPDATE-NEW-MESSAGE-TEXT', newText: e.target.value})
     };
 
     return (

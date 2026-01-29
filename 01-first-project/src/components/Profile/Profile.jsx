@@ -10,17 +10,15 @@ function Profile(props) {
             posts,
             newPostText,
         },
-        addPost,
-        updateNewPostText,
+        dispatch,
     } = props;
 
     return (
         <div>
             <ProfileInfo />
             <MyPosts posts={posts}
-                     addPost={addPost}
+                     dispatch={dispatch}
                      newPostText={newPostText}
-                     updateNewPostText={updateNewPostText}
             />
         </div>
     );

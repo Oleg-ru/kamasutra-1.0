@@ -6,19 +6,18 @@ function MyPosts(props) {
 
     const {
         posts,
-        addPost: addNewPost,
+        dispatch,
         newPostText,
-        updateNewPostText,
     } = props;
 
     const newPostElement = useRef(null);
 
     const addPost = () => {
-        addNewPost();
+        dispatch({type: 'ADD-POST'});
     }
 
     const onPostChange = (e) => {
-        updateNewPostText(e.target.value);
+        dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: e.target.value});
     };
 
     return (
