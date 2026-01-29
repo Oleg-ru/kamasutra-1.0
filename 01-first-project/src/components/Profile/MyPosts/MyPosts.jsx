@@ -15,7 +15,7 @@ function MyPosts(props) {
 
     const addPost = () => {
         addNewPost();
-    };
+    }
 
     const onPostChange = (e) => {
         updateNewPostText(e.target.value);
