@@ -1,3 +1,9 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
 let store = {
     _state: {
         profilePage: {
@@ -75,7 +81,7 @@ let store = {
     dispatch(action) {
         switch (action.type) {
 
-            case 'ADD-POST': {
+            case ADD_POST: {
                 const newPost = {
                     id: crypto.randomUUID(),
                     message: this._state.profilePage.newPostText,
@@ -88,13 +94,13 @@ let store = {
             }
             break;
 
-            case 'UPDATE-NEW-POST-TEXT': {
+            case UPDATE_NEW_POST_TEXT: {
                 this._state.profilePage.newPostText = action.newText;
                 this._callSubscriber(this._state);
             }
             break;
 
-            case 'ADD-MESSAGE': {
+            case ADD_MESSAGE: {
                 const newMessage = {
                     id: crypto.randomUUID(),
                     message: this._state.dialogsPage.newMessageText,
@@ -108,7 +114,7 @@ let store = {
             }
                 break;
 
-            case 'UPDATE-NEW-MESSAGE-TEXT': {
+            case UPDATE_NEW_MESSAGE_TEXT: {
                 this._state.dialogsPage.newMessageText = action.newText;
                 this._callSubscriber(this._state);
             }
@@ -116,6 +122,22 @@ let store = {
         }
     },
 }
+
+export const addPostActionCreator = () => ({
+    type: ADD_POST
+});
+export const updateNewPostTextActionCreator = (text) => ({
+    type: UPDATE_NEW_POST_TEXT,
+    newText: text
+});
+
+export const addMessageActionCreator = () => ({
+    type: ADD_MESSAGE
+});
+export const updateNewMessageTextActionCreator = (text) => ({
+    type: UPDATE_NEW_MESSAGE_TEXT,
+    newText: text
+});
 
 store.dispatch = store.dispatch.bind(store)
 
