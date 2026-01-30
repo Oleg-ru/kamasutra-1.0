@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import styles from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem.jsx";
 import Message from "./Message/Message.jsx";
@@ -14,8 +14,6 @@ function Dialogs(props) {
         },
         dispatch,
     } = props;
-
-    const newSendMessage = useRef(null);
 
     const sendMessage = () => {
         dispatch(addMessageActionCreator())
@@ -36,7 +34,6 @@ function Dialogs(props) {
                     .map(message => <Message key={message.id} message={message}/> )}
                 <div className={styles.sendMessageContainer}>
                     <textarea className={styles.textArea}
-                              ref={newSendMessage}
                               onChange={updateChangeMessage}
                               value={newMessageText}
                     />

@@ -1,11 +1,7 @@
-import React, {useRef} from 'react';
+import React  from 'react';
 import styles from './MyPosts.module.css'
 import Post from "./Post/Post.jsx";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state.js";
-
-
-
-
 
 function MyPosts(props) {
 
@@ -14,8 +10,6 @@ function MyPosts(props) {
         dispatch,
         newPostText,
     } = props;
-
-    const newPostElement = useRef(null);
 
     const addPost = () => {
         dispatch(addPostActionCreator());
@@ -32,7 +26,6 @@ function MyPosts(props) {
                 <div>
                     <div>
                         <textarea className={styles.textarea}
-                                  ref={newPostElement}
                                   value={newPostText}
                                   onChange={onPostChange}
                         />

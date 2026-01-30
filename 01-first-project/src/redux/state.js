@@ -51,11 +51,7 @@ let store = {
             dialogs: [
                 {id: 1, name: 'Vladimir', avatar: "https://cdn-icons-png.flaticon.com/512/4792/4792944.png"},
                 {id: 2, name: 'Anton', avatar: "https://cdn-icons-png.flaticon.com/512/4792/4792944.png"},
-                {
-                    id: 3,
-                    name: 'Anastasia',
-                    avatar: "https://img.freepik.com/free-vector/woman-with-long-dark-hair_1308-176666.jpg"
-                },
+                {id: 3, name: 'Anastasia',avatar: "https://img.freepik.com/free-vector/woman-with-long-dark-hair_1308-176666.jpg"},
             ],
             newMessageText: 'New message here....'
         },
@@ -68,7 +64,7 @@ let store = {
         },
     },
     _callSubscriber() {
-        console.log("this._state changed")
+
     },
 
     getState() {

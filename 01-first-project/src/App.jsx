@@ -9,7 +9,6 @@ import Music from "./components/Music/Music.jsx";
 import Settings from "./components/Settings/Settings.jsx";
 import Friends from "./components/Friends/Friends.jsx";
 
-
 function App(props) {
 
     const {
