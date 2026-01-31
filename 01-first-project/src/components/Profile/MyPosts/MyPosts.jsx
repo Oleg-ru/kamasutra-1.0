@@ -5,8 +5,10 @@ import Post from "./Post/Post.jsx";
 function MyPosts(props) {
 
     const {
-        posts,
-        newPostText,
+        profilePage: {
+            posts,
+            newPostText,
+        },
         addPost,
         updateNewPostText,
     } = props;

@@ -7,9 +7,11 @@ import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../
 function Dialogs(props) {
 
     const {
-        dialogs,
-        messages,
-        newMessageText,
+        dialogsPage: {
+            dialogs,
+            messages,
+            newMessageText,
+        },
         onSendMessage,
         onUpdateChangeMessage,
     } = props;
