@@ -7,20 +7,19 @@ import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../
 function Dialogs(props) {
 
     const {
-        state: {
-            dialogs,
-            messages,
-            newMessageText,
-        },
-        dispatch,
+        dialogs,
+        messages,
+        newMessageText,
+        onSendMessage,
+        onUpdateChangeMessage,
     } = props;
 
     const sendMessage = () => {
-        dispatch(addMessageActionCreator())
+        onSendMessage();
     };
 
     const updateChangeMessage = (e) => {
-        dispatch(updateNewMessageTextActionCreator(e.target.value))
+        onUpdateChangeMessage(e.target.value);
     };
 
     return (

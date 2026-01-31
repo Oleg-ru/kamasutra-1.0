@@ -5,7 +5,7 @@ import TopFriends from "../Friends/TopFriends/TopFriends.jsx";
 
 function Navbar(props) {
 
-    const {friendsPage} = props;
+    const {store} = props;
 
     const navStyle = ({isActive}) => (isActive ? `${styles.activeLink} ${styles.item}` : `${styles.item}`);
     
@@ -19,7 +19,7 @@ function Navbar(props) {
                 <NavLink to="/friends" className={navStyle}>
                     Friends
                 </NavLink>
-                <TopFriends friendsPage={friendsPage}/>
+                <TopFriends friendsPage={store.getState().friendsPage}/>
             </nav>
     );
 }
