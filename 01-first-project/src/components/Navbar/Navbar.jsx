@@ -19,7 +19,7 @@ function Navbar(props) {
                 <NavLink to="/friends" className={navStyle}>
                     Friends
                 </NavLink>
-                <TopFriends friendsPage={store.getState().friendsPage}/>
+                {/*<TopFriends friendsPage={store.getState().friendsPage}/>*/}
             </nav>
     );
 }
