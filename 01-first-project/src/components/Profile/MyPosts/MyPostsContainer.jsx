@@ -1,7 +1,7 @@
 import React from 'react';
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer.js";
 import MyPosts from "./MyPosts.jsx";
-import StoreContext from "../../../StoreContext.js";
+import StoreContext from "../../../StoreContext.jsx";
 
 function MyPostsContainer() {
 

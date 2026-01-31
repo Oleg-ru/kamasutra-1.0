@@ -1,7 +1,7 @@
 import React from 'react';
 import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialogs-reducer.js";
 import Dialogs from "./Dialogs.jsx";
-import StoreContext from "../../StoreContext.js";
+import StoreContext from "../../StoreContext.jsx";
 
 function DialogsContainer() {
 
