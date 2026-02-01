@@ -8,6 +8,7 @@ import Music from "./components/Music/Music.jsx";
 import Settings from "./components/Settings/Settings.jsx";
 import Friends from "./components/Friends/Friends.jsx";
 import DialogsContainer from "./components/Dialogs/DialogsContainer.jsx";
+import UsersContainer from "./components/Users/UsersContainer.jsx";
 
 function App(props) {
 
@@ -21,10 +22,9 @@ function App(props) {
             <Navbar store={store}/>
             <div className='app-wrapper-content'>
                 <Routes>
-                    <Route path='profile' element={<Profile />}
-                    />
-                    <Route path='dialogs/*' element={<DialogsContainer />}
-                    />
+                    <Route path='profile' element={<Profile />}/>
+                    <Route path='dialogs/*' element={<DialogsContainer />}/>
+                    <Route path='users' element={<UsersContainer />}/>
                     <Route path='news' element={<News />}/>
                     <Route path='music' element={<Music />}/>
                     <Route path='settings' element={<Settings />}/>

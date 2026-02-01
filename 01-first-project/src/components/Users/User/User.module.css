@@ -1,0 +1,49 @@
+/*User*/
+.user {
+    display: flex;
+    padding: 1rem;
+    border: 2px solid black;
+    border-radius: 15px;
+    box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.3);
+}
+
+.avatarWithActions {
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.avatar {
+    margin: 0 auto;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.actionBtn {
+}
+
+.userInfoContainer {
+
+}
+
+.fullName {
+    &::before {
+        content: '🤖 '
+    }
+}
+
+.status {
+    &::before {
+        content: '🔔 '
+    }
+}
+
+.location {
+    &::before {
+        content: '🌍 '
+    }
+}
