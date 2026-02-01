@@ -52,18 +52,21 @@ const dialogsReducer = (state = initialState, action) => {
                 isSelf: true,
                 avatar: "https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174669.jpg",
             };
-
-            state.messages.push(newMessage);
-            state.newMessageText = '';
+            const stateCopy = {...state};
+            stateCopy.messages = [...state.messages];
+            stateCopy.messages.push(newMessage);
+            stateCopy.newMessageText = '';
+            return stateCopy;
         }
-            break;
 
         case UPDATE_NEW_MESSAGE_TEXT: {
-            state.newMessageText = action.newText;
+            const stateCopy = {...state};
+            stateCopy.newMessageText = action.newText;
+            return stateCopy;
         }
-            break;
+        default:
+            return state;
     }
-    return state;
 };
 
 export const addMessageActionCreator = () => ({

@@ -7,22 +7,11 @@ import App from './App.jsx'
 import {BrowserRouter} from "react-router";
 import {Provider} from "react-redux";
 
-export const rootRender = createRoot(document.getElementById('root'));
-
-export const renderEntireTree = (state) => {
-    rootRender.render(
-        <StrictMode>
-            <BrowserRouter>
-                <Provider store={store}>
-                    <App />
-                </Provider>
-            </BrowserRouter>
-        </StrictMode>,
-    )
-};
-
-renderEntireTree(store.getState());
-
-store.subscribe(() => {
-    renderEntireTree(store.getState())
-})
+createRoot(document.getElementById('root')).render(
+    <StrictMode>
+        <BrowserRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>
+    </StrictMode>);
