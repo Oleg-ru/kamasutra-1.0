@@ -6,15 +6,12 @@ import {API_BASE} from "../../constants/api.js";
 
 class Users extends React.Component {
 
-    constructor(props) {
-        super(props);
-
+    componentDidMount() {
         axios.get(`${API_BASE}/users`)
             .then((data) => {
                 console.log(data.data.items)
                 this.props.setUsers(data.data.items)
             })
-
     }
 
     render() {
