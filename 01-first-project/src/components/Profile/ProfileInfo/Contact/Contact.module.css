@@ -1,0 +1,10 @@
+.link {
+    text-decoration: none;
+}
+
+.logo {
+    display: block;
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}

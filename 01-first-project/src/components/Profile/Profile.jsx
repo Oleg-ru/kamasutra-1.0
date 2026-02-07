@@ -6,13 +6,13 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer.jsx";
 function Profile(props) {
 
     const {
-        store
+        profile
     } = props;
 
     return (
         <div>
-            <ProfileInfo />
-            <MyPostsContainer store={store} />
+            <ProfileInfo profile={profile}/>
+            <MyPostsContainer />
         </div>
     );
 }

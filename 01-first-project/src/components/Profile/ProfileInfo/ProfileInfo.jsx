@@ -1,7 +1,41 @@
 import React from 'react';
 import styles from './ProfileInfo.module.css'
+import Preloader from "../../common/Preloader/Preloader.jsx";
+import Contact from "./Contact/Contact.jsx";
 
 function ProfileInfo(props) {
+
+    console.log(props)
+
+    if (!props.profile) {
+        return <Preloader />
+    }
+
+    const {
+        profile : {
+            fullName,
+            aboutMe,
+            lookingForAJob,
+            lookingForAJobDescription,
+            contacts
+        }
+    } = props;
+
+    console.log(typeof contacts)
+
+    const getContacts = (contacts) => {
+        const contactsArray = [];
+
+        for (const key in contacts) {
+            if (!contacts[key]) {
+                continue;
+            }
+            contactsArray.push(<Contact url={contacts[key]} type={key}/>)
+        }
+
+        return contactsArray;
+    };
+
     return (
         <>
             <div>
@@ -9,8 +43,17 @@ function ProfileInfo(props) {
                      alt=""/>
             </div>
             <div className={styles.description}>
-                {/*<img src="https://web-tool.org/create-round-image/rectangular-image.jpg" alt=""/>*/}
-                ava + desc
+                <img className={styles.myAvatar} src={props.profile.photos.large ?? 'https://upload.wikimedia.org/wikipedia/commons/2/2f/No-photo-m.png'} alt="avatar"/>
+                <div className={styles.descriptionProfile}>
+                    <p className={styles.fullName}>👋 Привет, я {fullName}</p>
+                    <p className={styles.aboutMe}>🧬 Немного о себе: {aboutMe}</p>
+                    <p className={styles.lookingForAJob}>🏭 Сейчас я {lookingForAJob ? 'ищу работу.' : 'ие ищу работу.'}</p>
+                    <p className={styles.lookingForAJobDescription}>📣 Описание вакансии: {lookingForAJobDescription}</p>
+                    <p>📡 Мои контакты:</p>
+                    <div className={styles.contactsContainer}>
+                        {getContacts(contacts)}
+                    </div>
+                </div>
             </div>
         </>
     );

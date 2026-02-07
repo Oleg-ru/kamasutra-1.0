@@ -1,6 +1,7 @@
 import styles from './User.module.css'
 
 import React from 'react';
+import {NavLink} from "react-router";
 
 function User(props) {
 
@@ -25,7 +26,9 @@ function User(props) {
     return (
         <div className={styles.user}>
             <div className={styles.avatarWithActions}>
-                <img className={styles.avatar} src={avatar} alt="avatar"/>
+                <NavLink to={`/profile/${id}`} >
+                    <img className={styles.avatar} src={avatar} alt="avatar"/>
+                </NavLink>
                 <button className={styles.actionBtn}
                         onClick={onClickFollow}>
                     {followed ? 'Unfollow' : 'Follow'}

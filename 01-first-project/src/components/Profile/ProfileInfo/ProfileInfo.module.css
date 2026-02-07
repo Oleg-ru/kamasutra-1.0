@@ -6,9 +6,41 @@
 }
 
 .description {
+    display: flex;
+    gap: 1rem;
     padding: 20px;
     margin-bottom: 50px;
     border-bottom: 25px solid #646cff;
     border-top: 25px solid #646cff;
     border-radius: 50px;
+}
+
+.fullName {
+
+}
+
+.aboutMe {
+
+}
+
+.lookingForAJob {
+
+}
+
+.lookingForAJobDescription {
+
+}
+
+.descriptionProfile {
+
+}
+
+.myAvatar {
+    border-radius: 16px;
+}
+
+.contactsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
