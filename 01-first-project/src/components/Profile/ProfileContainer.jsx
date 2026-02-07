@@ -4,11 +4,26 @@ import axios from "axios";
 import {API_BASE} from "../../constants/api.js";
 import {connect} from "react-redux";
 import {setUserProfile} from "../../redux/profile-reducer.js";
+import {useParams} from "react-router-dom";
+
+export function withRouter(WrappedComponent){
+    //т.к не можем в классе использовать хуки
+    // т.е берем оригинальный компонент и оборачиваем его передав новый пропс который берет значение из вызова хука
+    return (props) => {
+        const match  = {params: useParams()};
+        return <WrappedComponent {...props}  match={match}/>
+    }
+}
 
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        axios.get(`${API_BASE}/profile/2`)
+        let profileId = this.props.match.params.userId;
+        if (!profileId) {
+            profileId = 2;
+        }
+
+        axios.get(`${API_BASE}/profile/${profileId}`)
             .then((data) => {
                 this.props.setUserProfile(data.data);
             })
@@ -25,6 +40,7 @@ const mapStateToProps = (state) => {
     }
 }
 
+const WhitsUrlContainerComponent = withRouter(ProfileContainer)
 export default connect(mapStateToProps, {
     setUserProfile,
-})(ProfileContainer);
+})(WhitsUrlContainerComponent);

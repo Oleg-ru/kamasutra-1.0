@@ -21,8 +21,6 @@ function ProfileInfo(props) {
         }
     } = props;
 
-    console.log(typeof contacts)
-
     const getContacts = (contacts) => {
         const contactsArray = [];
 
@@ -47,7 +45,7 @@ function ProfileInfo(props) {
                 <div className={styles.descriptionProfile}>
                     <p className={styles.fullName}>👋 Привет, я {fullName}</p>
                     <p className={styles.aboutMe}>🧬 Немного о себе: {aboutMe}</p>
-                    <p className={styles.lookingForAJob}>🏭 Сейчас я {lookingForAJob ? 'ищу работу.' : 'ие ищу работу.'}</p>
+                    <p className={styles.lookingForAJob}>🏭 Сейчас я {lookingForAJob ? 'ищу работу.' : 'н е ищу работу.'}</p>
                     <p className={styles.lookingForAJobDescription}>📣 Описание вакансии: {lookingForAJobDescription}</p>
                     <p>📡 Мои контакты:</p>
                     <div className={styles.contactsContainer}>
