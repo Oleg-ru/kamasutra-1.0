@@ -1,5 +1,4 @@
 import styles from './User.module.css'
-
 import React from 'react';
 import {NavLink} from "react-router";
 import {followUnfollowAPI} from "../../../api/api.js";
@@ -17,21 +16,25 @@ function User(props) {
         },
         avatar,
         follow,
-        unfollow
+        unfollow,
+        toggleIsFollowingProgress
     } = props;
 
     const onClickFollow = () => {
 
         if (followed) {
+            toggleIsFollowingProgress(true, id)
             followUnfollowAPI.unfollow(id);
             unfollow(id);
+            toggleIsFollowingProgress(false, id)
         } else {
-
+            toggleIsFollowingProgress(true, id)
             followUnfollowAPI.follow(id)
                 .then((data) => {
                     if (data.resultCode === 0) {
                         follow(id)
                     }
+                    toggleIsFollowingProgress(false, id)
                 })
         }
     };
@@ -43,7 +46,9 @@ function User(props) {
                     <img className={styles.avatar} src={avatar} alt="avatar"/>
                 </NavLink>
                 <button className={styles.actionBtn}
-                        onClick={onClickFollow}>
+                        onClick={onClickFollow}
+                        disabled={props.followingInProgress.some(userId => userId === id)}
+                >
                     {followed ? 'Unfollow' : 'Follow'}
                 </button>
             </div>
