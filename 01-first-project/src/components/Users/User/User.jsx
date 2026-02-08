@@ -2,6 +2,8 @@ import styles from './User.module.css'
 
 import React from 'react';
 import {NavLink} from "react-router";
+import axios from "axios";
+import {API_BASE} from "../../../constants/api.js";
 
 function User(props) {
 
@@ -20,7 +22,29 @@ function User(props) {
     } = props;
 
     const onClickFollow = () => {
-        followed ? unfollow(id) : follow(id);
+
+        if (followed) {
+            axios.delete(`${API_BASE}/follow/${id}`, {
+                headers: {
+                    "API-KEY": `${import.meta.env.VITE_API_KEY}`,
+                    "Authorization": `Bearer ${import.meta.env.VITE_BEARER_KEY}`
+                }
+            })
+            unfollow(id)
+        } else {
+            axios.post(`${API_BASE}/follow/${id}`,
+                {}, {
+                headers: {
+                    "API-KEY": `${import.meta.env.VITE_API_KEY}`,
+                    "Authorization": `Bearer ${import.meta.env.VITE_BEARER_KEY}`
+                }
+                })
+                .then((response) => {
+                    if (response.data.resultCode === 0) {
+                        follow(id)
+                    }
+                })
+        }
     };
 
     return (

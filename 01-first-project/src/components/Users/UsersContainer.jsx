@@ -19,7 +19,11 @@ class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsFetching(true);
 
-        axios.get(`${API_BASE}/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`${API_BASE}/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+            headers: {
+                "Authorization": `Bearer ${import.meta.env.VITE_BEARER_KEY}`
+            }
+        })
             .then((data) => {
                 console.log(data.data.items)
                 this.props.setUsers(data.data.items);
@@ -32,7 +36,11 @@ class UsersContainer extends React.Component {
         this.props.toggleIsFetching(true);
         this.props.setCurrentPage(pageNumber);
 
-        axios.get(`${API_BASE}/users?page=${pageNumber}&count=${this.props.pageSize}`)
+        axios.get(`${API_BASE}/users?page=${pageNumber}&count=${this.props.pageSize}`, {
+            headers: {
+                "Authorization": `Bearer ${import.meta.env.VITE_BEARER_KEY}`
+            }
+        })
             .then((data) => {
                 console.log(data.data.items)
                 this.props.setUsers(data.data.items)
