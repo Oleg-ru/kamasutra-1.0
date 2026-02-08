@@ -1,4 +1,5 @@
 .header {
+    position: relative;
     grid-area: h;
     background: linear-gradient(90deg in oklab, rgba(228, 86, 86, 0.7), #4949dc, #105910);
 }
@@ -9,4 +10,12 @@
         height: 100%;
         border-radius: 50%;
     }
+}
+
+.loginContainer {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    margin-right: 16px;
+    font-size: 1.5rem;
 }
