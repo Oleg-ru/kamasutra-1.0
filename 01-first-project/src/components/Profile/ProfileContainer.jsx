@@ -1,10 +1,9 @@
 import React from 'react';
 import Profile from "./Profile.jsx";
-import axios from "axios";
-import {API_BASE} from "../../constants/api.js";
 import {connect} from "react-redux";
 import {setUserProfile} from "../../redux/profile-reducer.js";
 import {useParams} from "react-router-dom";
+import {profileAPI} from "../../api/api.js";
 
 export function withRouter(WrappedComponent){
     //т.к не можем в классе использовать хуки
@@ -23,9 +22,9 @@ class ProfileContainer extends React.Component {
             profileId = 2;
         }
 
-        axios.get(`${API_BASE}/profile/${profileId}`)
+        profileAPI.getProfile(profileId)
             .then((data) => {
-                this.props.setUserProfile(data.data);
+                this.props.setUserProfile(data);
             })
     }
 

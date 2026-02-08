@@ -2,8 +2,7 @@ import styles from './User.module.css'
 
 import React from 'react';
 import {NavLink} from "react-router";
-import axios from "axios";
-import {API_BASE} from "../../../constants/api.js";
+import {followUnfollowAPI} from "../../../api/api.js";
 
 function User(props) {
 
@@ -24,23 +23,13 @@ function User(props) {
     const onClickFollow = () => {
 
         if (followed) {
-            axios.delete(`${API_BASE}/follow/${id}`, {
-                headers: {
-                    "API-KEY": `${import.meta.env.VITE_API_KEY}`,
-                    "Authorization": `Bearer ${import.meta.env.VITE_BEARER_KEY}`
-                }
-            })
-            unfollow(id)
+            followUnfollowAPI.unfollow(id);
+            unfollow(id);
         } else {
-            axios.post(`${API_BASE}/follow/${id}`,
-                {}, {
-                headers: {
-                    "API-KEY": `${import.meta.env.VITE_API_KEY}`,
-                    "Authorization": `Bearer ${import.meta.env.VITE_BEARER_KEY}`
-                }
-                })
-                .then((response) => {
-                    if (response.data.resultCode === 0) {
+
+            followUnfollowAPI.follow(id)
+                .then((data) => {
+                    if (data.resultCode === 0) {
                         follow(id)
                     }
                 })
@@ -50,7 +39,7 @@ function User(props) {
     return (
         <div className={styles.user}>
             <div className={styles.avatarWithActions}>
-                <NavLink to={`/profile/${id}`} >
+                <NavLink to={`/profile/${id}`}>
                     <img className={styles.avatar} src={avatar} alt="avatar"/>
                 </NavLink>
                 <button className={styles.actionBtn}

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import styles from './Users.module.css'
 import User from "./User/User.jsx";
 import axios from "axios";
-import {API_BASE} from "../../constants/api.js";
+import {API_BASE} from "../../api/api.js";
 
 const usersData = [
     {

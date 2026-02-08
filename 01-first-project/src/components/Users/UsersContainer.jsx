@@ -9,24 +9,17 @@ import {
     unfollow
 } from "../../redux/users-reducer.js";
 import Users from "./Users.jsx";
-import axios from "axios";
-import {API_BASE} from "../../constants/api.js";
-import styles from './Users.module.css'
 import Preloader from "../common/Preloader/Preloader.jsx";
+import {usersAPI} from "../../api/api.js";
 
 class UsersContainer extends React.Component {
 
     componentDidMount() {
         this.props.toggleIsFetching(true);
 
-        axios.get(`${API_BASE}/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-            headers: {
-                "Authorization": `Bearer ${import.meta.env.VITE_BEARER_KEY}`
-            }
-        })
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
             .then((data) => {
-                console.log(data.data.items)
-                this.props.setUsers(data.data.items);
+                this.props.setUsers(data.items);
                 // this.props.setTotalUsersCount(data.data.totalCount);
                 this.props.toggleIsFetching(false);
             })
@@ -36,14 +29,9 @@ class UsersContainer extends React.Component {
         this.props.toggleIsFetching(true);
         this.props.setCurrentPage(pageNumber);
 
-        axios.get(`${API_BASE}/users?page=${pageNumber}&count=${this.props.pageSize}`, {
-            headers: {
-                "Authorization": `Bearer ${import.meta.env.VITE_BEARER_KEY}`
-            }
-        })
+        usersAPI.getUsers(pageNumber, this.props.pageSize)
             .then((data) => {
-                console.log(data.data.items)
-                this.props.setUsers(data.data.items)
+                this.props.setUsers(data.items)
                 this.props.toggleIsFetching(false);
             })
     }
