@@ -1,7 +1,6 @@
 import styles from './User.module.css'
 import React from 'react';
 import {NavLink} from "react-router";
-import {followUnfollowAPI} from "../../../api/api.js";
 
 function User(props) {
 
@@ -16,28 +15,10 @@ function User(props) {
         },
         avatar,
         follow,
-        unfollow,
-        toggleIsFollowingProgress
+        unfollow
     } = props;
 
-    const onClickFollow = () => {
-
-        if (followed) {
-            toggleIsFollowingProgress(true, id)
-            followUnfollowAPI.unfollow(id);
-            unfollow(id);
-            toggleIsFollowingProgress(false, id)
-        } else {
-            toggleIsFollowingProgress(true, id)
-            followUnfollowAPI.follow(id)
-                .then((data) => {
-                    if (data.resultCode === 0) {
-                        follow(id)
-                    }
-                    toggleIsFollowingProgress(false, id)
-                })
-        }
-    };
+    const onClickFollow = () => followed ? unfollow(id) : follow(id);
 
     return (
         <div className={styles.user}>
