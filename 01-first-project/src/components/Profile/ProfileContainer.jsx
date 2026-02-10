@@ -3,7 +3,7 @@ import Profile from "./Profile.jsx";
 import {connect} from "react-redux";
 import {getUserProfile} from "../../redux/profile-reducer.js";
 import {useParams} from "react-router-dom";
-import {Navigate} from "react-router";
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect.jsx";
 
 export function withRouter(WrappedComponent){
     //т.к не можем в классе использовать хуки
@@ -21,23 +21,17 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
-        //Если не авторизованы редирект на login
-        if (!props.isAuth) {
-            return <Navigate to={'/login'} />
-        }
-
         return <Profile {...this.props} />
     }
 }
 
+const AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+
 const mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
-        isAuth: state.auth.isAuth,
     }
 }
 
-const WhitsUrlContainerComponent = withRouter(ProfileContainer)
-export default connect(mapStateToProps, {
-    getUserProfile,
-})(WhitsUrlContainerComponent);
+const WhitsUrlContainerComponent = withRouter(AuthRedirectComponent)
+export default connect(mapStateToProps, {getUserProfile})(WhitsUrlContainerComponent);
