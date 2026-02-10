@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from "./Profile.jsx";
 import {connect} from "react-redux";
-import {getProfile, setUserProfile} from "../../redux/profile-reducer.js";
+import {getUserProfile} from "../../redux/profile-reducer.js";
 import {useParams} from "react-router-dom";
 
 export function withRouter(WrappedComponent){
@@ -16,7 +16,7 @@ export function withRouter(WrappedComponent){
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getProfile(this.props.match.params.userId)
+        this.props.getUserProfile(this.props.match.params.userId)
     }
 
     render() {
@@ -32,6 +32,5 @@ const mapStateToProps = (state) => {
 
 const WhitsUrlContainerComponent = withRouter(ProfileContainer)
 export default connect(mapStateToProps, {
-    setUserProfile,
-    getProfile,
+    getUserProfile,
 })(WhitsUrlContainerComponent);

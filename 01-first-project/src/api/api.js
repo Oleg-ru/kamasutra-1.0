@@ -30,7 +30,7 @@ export const usersAPI = {
     },
 }
 
-export const authMeAPI = {
+export const authAPI = {
     authMe () {
         return instance.get(`/auth/me`)
             .then(response => response.data)

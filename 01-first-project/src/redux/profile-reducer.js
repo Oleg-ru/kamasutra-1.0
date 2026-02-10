@@ -63,7 +63,7 @@ export const setUserProfile = (profile) => ({
 });
 
 //санки
-export const getProfile = (profileId) => {
+export const getUserProfile = (profileId) => {
     return (dispatch) => {
         if (!profileId) {
             profileId = 2;
