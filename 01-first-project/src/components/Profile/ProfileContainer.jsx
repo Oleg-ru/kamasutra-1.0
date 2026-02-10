@@ -3,6 +3,7 @@ import Profile from "./Profile.jsx";
 import {connect} from "react-redux";
 import {getUserProfile} from "../../redux/profile-reducer.js";
 import {useParams} from "react-router-dom";
+import {Navigate} from "react-router";
 
 export function withRouter(WrappedComponent){
     //т.к не можем в классе использовать хуки
@@ -20,6 +21,11 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
+        //Если не авторизованы редирект на login
+        if (!props.isAuth) {
+            return <Navigate to={'/login'} />
+        }
+
         return <Profile {...this.props} />
     }
 }
@@ -27,6 +33,7 @@ class ProfileContainer extends React.Component {
 const mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
+        isAuth: state.auth.isAuth,
     }
 }
 

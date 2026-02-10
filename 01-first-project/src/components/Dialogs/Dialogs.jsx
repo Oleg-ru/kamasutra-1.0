@@ -3,6 +3,7 @@ import styles from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem.jsx";
 import Message from "./Message/Message.jsx";
 import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialogs-reducer.js";
+import {Navigate} from "react-router";
 
 function Dialogs(props) {
 
@@ -23,6 +24,11 @@ function Dialogs(props) {
     const updateChangeMessage = (e) => {
         onUpdateChangeMessage(e.target.value);
     };
+
+    //Если не авторизованы редирект на login
+    if (!props.isAuth) {
+        return <Navigate to={'/login'} />
+    }
 
     return (
         <div className={styles.dialogs}>
