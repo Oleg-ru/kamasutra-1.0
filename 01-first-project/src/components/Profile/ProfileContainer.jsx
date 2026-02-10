@@ -1,9 +1,8 @@
 import React from 'react';
 import Profile from "./Profile.jsx";
 import {connect} from "react-redux";
-import {setUserProfile} from "../../redux/profile-reducer.js";
+import {getProfile, setUserProfile} from "../../redux/profile-reducer.js";
 import {useParams} from "react-router-dom";
-import {profileAPI} from "../../api/api.js";
 
 export function withRouter(WrappedComponent){
     //т.к не можем в классе использовать хуки
@@ -17,15 +16,7 @@ export function withRouter(WrappedComponent){
 class ProfileContainer extends React.Component {
 
     componentDidMount() {
-        let profileId = this.props.match.params.userId;
-        if (!profileId) {
-            profileId = 2;
-        }
-
-        profileAPI.getProfile(profileId)
-            .then((data) => {
-                this.props.setUserProfile(data);
-            })
+        this.props.getProfile(this.props.match.params.userId)
     }
 
     render() {
@@ -42,4 +33,5 @@ const mapStateToProps = (state) => {
 const WhitsUrlContainerComponent = withRouter(ProfileContainer)
 export default connect(mapStateToProps, {
     setUserProfile,
+    getProfile,
 })(WhitsUrlContainerComponent);

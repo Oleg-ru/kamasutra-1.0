@@ -28,7 +28,7 @@ function ProfileInfo(props) {
             if (!contacts[key]) {
                 continue;
             }
-            contactsArray.push(<Contact url={contacts[key]} type={key}/>)
+            contactsArray.push(<Contact key={key} url={contacts[key]} type={key}/>)
         }
 
         return contactsArray;

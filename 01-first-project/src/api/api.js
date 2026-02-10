@@ -20,9 +20,6 @@ export const usersAPI = {
         return instance.get(`/users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data)
     },
-}
-
-export const followUnfollowAPI = {
     follow (id) {
         return instance.post(`/follow/${id}`)
             .then(response => response.data)
