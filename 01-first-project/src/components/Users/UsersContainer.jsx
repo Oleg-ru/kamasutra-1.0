@@ -7,6 +7,7 @@ import {
 } from "../../redux/users-reducer.js";
 import Users from "./Users.jsx";
 import Preloader from "../common/Preloader/Preloader.jsx";
+import {compose} from "redux";
 
 class UsersContainer extends React.Component {
 
@@ -23,7 +24,7 @@ class UsersContainer extends React.Component {
         return (
             <>
                 {this.props.isFetching
-                    ? <Preloader />
+                    ? <Preloader/>
                     : <Users totalUsersCount={this.props.totalUsersCount}
                              pageSize={this.props.pageSize}
                              currentPage={this.props.currentPage}
@@ -50,33 +51,12 @@ function mapStateToProps(state) {
     }
 }
 
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         follow: (userId) => {
-//             dispatch(followAC(userId));
-//         },
-//         unfollow: (userId) => {
-//             dispatch(unfollowAC(userId));
-//         },
-//         setUsers: (users) => {
-//             dispatch(setUsersAC(users));
-//         },
-//         setCurrentPage: (currentPage) => {
-//             dispatch(setCurrentPageAC(currentPage));
-//         },
-//         setTotalUsersCount: (totalUsersCount) => {
-//             dispatch(setTotalUsersCountAC(totalUsersCount));
-//         },
-//         toggleIsFetching: (isFetching) => {
-//             dispatch(toggleIsFetchingAC(isFetching));
-//         },
-//     }
-// }
-
-export default connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setCurrentPage,
-    toggleIsFollowingProgress,
-    getUsers,
-})(UsersContainer)
+export default compose(
+    connect(mapStateToProps, {
+        follow,
+        unfollow,
+        setCurrentPage,
+        toggleIsFollowingProgress,
+        getUsers,
+    })
+)(UsersContainer)

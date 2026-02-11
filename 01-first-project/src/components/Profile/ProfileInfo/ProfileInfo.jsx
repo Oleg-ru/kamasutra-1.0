@@ -5,8 +5,6 @@ import Contact from "./Contact/Contact.jsx";
 
 function ProfileInfo(props) {
 
-    console.log(props)
-
     if (!props.profile) {
         return <Preloader />
     }

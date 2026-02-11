@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {getUserProfile} from "../../redux/profile-reducer.js";
 import {useParams} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect.jsx";
+import {compose} from "redux";
 
 export function withRouter(WrappedComponent){
     //т.к не можем в классе использовать хуки
@@ -25,13 +26,14 @@ class ProfileContainer extends React.Component {
     }
 }
 
-const AuthRedirectComponent = withAuthRedirect(ProfileContainer);
-
 const mapStateToProps = (state) => {
     return {
         profile: state.profilePage.profile,
     }
 }
 
-const WhitsUrlContainerComponent = withRouter(AuthRedirectComponent)
-export default connect(mapStateToProps, {getUserProfile})(WhitsUrlContainerComponent);
+export default compose(
+    connect(mapStateToProps, {getUserProfile}),
+    withRouter,
+    withAuthRedirect,
+)(ProfileContainer)
