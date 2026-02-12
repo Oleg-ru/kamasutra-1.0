@@ -6,12 +6,17 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer.jsx";
 function Profile(props) {
 
     const {
-        profile
+        profile,
+        status,
+        updateStatus
     } = props;
 
     return (
         <div>
-            <ProfileInfo profile={profile}/>
+            <ProfileInfo profile={profile}
+                         status={status}
+                         updateStatus={updateStatus}
+            />
             <MyPostsContainer />
         </div>
     );

@@ -17,7 +17,9 @@ function ProfileInfo(props) {
             lookingForAJob,
             lookingForAJobDescription,
             contacts
-        }
+        },
+        status,
+        updateStatus,
     } = props;
 
     const getContacts = (contacts) => {
@@ -39,7 +41,7 @@ function ProfileInfo(props) {
                 <img className={styles.profileImg} src="https://assets.monica.im/tools-web/_next/static/media/mobile_upscale.e93d7497.webp"
                      alt=""/>
             </div>
-            <ProfileStatus status="Я че то сегодня разогнался хе-хе"/>
+            <ProfileStatus status={status} updateStatus={updateStatus}/>
             <div className={styles.description}>
                 <img className={styles.myAvatar} src={props.profile.photos.large ?? 'https://upload.wikimedia.org/wikipedia/commons/2/2f/No-photo-m.png'} alt="avatar"/>
                 <div className={styles.descriptionProfile}>
