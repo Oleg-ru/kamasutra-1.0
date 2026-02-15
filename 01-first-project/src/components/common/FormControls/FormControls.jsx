@@ -2,21 +2,23 @@ import React from 'react';
 import styles from './FormControls.module.css'
 import { clsx } from 'clsx';
 
-function FormControls({input, meta, ...props} ) {
-    const hasError = meta.error && meta.touched;
+export const FormControls = ({input, meta, componentType = 'input', ...props}) => {
+    const hasError = meta.touched && meta.error;
 
-    const classNames = clsx({
-        ...props.styles,
-        [styles.textarea]: true,
+    const className = clsx({
+        [styles.input]: componentType === 'input',
+        [styles.textarea]: componentType === 'textarea',
         [styles.error]: hasError,
-    })
+    }, props.styles);
 
     return (
-        <div className={styles.textareaContainer}>
+        <div className={styles.container}>
+            {React.createElement(componentType, {
+                ...input,
+                ...props,
+                className
+            })}
             {hasError && <span className={styles.errorMessage}>{meta.error}</span>}
-            <textarea {...input} {...props} className={classNames}/>
         </div>
-    );
+    )
 }
-
-export default FormControls;

@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './Login.module.css'
 import {Form, Field} from 'react-final-form'
+import {maxLengthCreator, requiredField} from "../../utils/validators/validators.js";
+import {FormControls} from "../common/FormControls/FormControls.jsx";
 
 function Login(props) {
     return (
@@ -18,6 +20,9 @@ function LoginForm(props) {
         console.log("Submited")
     };
 
+    const composeValidators = (...validators) => value =>
+        validators.reduce((error, validator) => error || validator(value), undefined);
+
     return (
         <Form onSubmit={onSubmit}
               render={({handleSubmit }) => (
@@ -25,19 +30,31 @@ function LoginForm(props) {
                       <div>
                           <label>
                               Login
-                              <Field name="login" component="input" placeholder="Login"/>
+                              <Field name="login"
+                                     component={FormControls}
+                                     placeholder="Login"
+                                     validate={composeValidators(requiredField, maxLengthCreator(25))}
+                              />
                           </label>
                       </div>
                       <div>
                           <label>
                               Password
-                              <Field name="password" component="input" type="password" placeholder="Password"/>
+                              <Field name="password"
+                                     component={FormControls}
+                                     type="password"
+                                     placeholder="Password"
+                                     validate={composeValidators(requiredField, maxLengthCreator(25))}
+                              />
                           </label>
                       </div>
                       <div>
                           <label>
                               Remember me
-                              <Field name="rememberMe" component="input" type="checkbox" />
+                              <Field name="rememberMe"
+                                     component={FormControls}
+                                     type="checkbox"
+                              />
                           </label>
                       </div>
                       <button type="submit">Login</button>

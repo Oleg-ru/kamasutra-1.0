@@ -4,8 +4,8 @@ import DialogItem from "./DialogItem/DialogItem.jsx";
 import Message from "./Message/Message.jsx";
 import {Navigate} from "react-router";
 import {Field, Form} from "react-final-form";
-import FormControls from "../common/FormControls/FormControls.jsx";
 import {maxLengthCreator, requiredField} from "../../utils/validators/validators.js";
+import {FormControls} from "../common/FormControls/FormControls.jsx";
 
 function Dialogs(props) {
 
@@ -55,9 +55,10 @@ function MessageForm(props) {
                   <form className={styles.sendMessageContainer} onSubmit={(event) => handleSubmit(event, form)}>
                       <Field name="newTextMessage"
                              component={FormControls}
-                             placeholder="Введите сообщение"
-                             className={styles.textArea}
                              validate={composeValidators(requiredField, maxLengthCreator(100))}
+                             componentType={'textarea'}
+                             styles={[styles.textArea]}
+                             placeholder="Введите сообщение"
                       />
                       <button type="submit">Send</button>
                   </form>

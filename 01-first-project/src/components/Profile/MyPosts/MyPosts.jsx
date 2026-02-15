@@ -3,7 +3,7 @@ import styles from './MyPosts.module.css'
 import Post from "./Post/Post.jsx";
 import {Form, Field} from 'react-final-form'
 import {maxLengthCreator, requiredField} from "../../../utils/validators/validators.js";
-import FormControls from "../../common/FormControls/FormControls.jsx";
+import {FormControls} from "../../common/FormControls/FormControls.jsx";
 
 function MyPosts(props) {
 
@@ -35,9 +35,9 @@ function PostForm(props) {
     const composeValidators = (...validators) => value =>
         validators.reduce((error, validator) => error || validator(value), undefined);
 
-    const FormControlsCustom = React.useCallback((props) => {
-        return <FormControls {...props} styles={{[styles.textarea]: true}} />;
-    }, []);
+    // const FormControlsCustom = React.useCallback((props) => {
+    //     return <Textarea {...props} styles={{[styles.textarea]: true}} />;
+    // }, []);
 
     return (
         <Form onSubmit={onSubmit}
@@ -45,9 +45,11 @@ function PostForm(props) {
                   <form onSubmit={(event) => handleSubmit(event, form)}>
                       <div>
                           <Field name="newPostMessage"
-                                 component={FormControlsCustom}
-                                 placeholder="О чем хочешь рассказать?"
                                  validate={composeValidators(requiredField, maxLengthCreator(10))}
+                                 component={FormControls}
+                                 componentType={"textarea"}
+                                 styles={[styles.textarea]}
+                                 placeholder="О чем хочешь рассказать?"
                           />
                       </div>
                       <button type="submit">Add post</button>

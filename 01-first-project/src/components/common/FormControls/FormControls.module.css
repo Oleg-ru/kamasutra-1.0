@@ -1,9 +1,10 @@
-.formControl {
-
+.container {
+    width: 100%;
+    position: relative;
 }
 
-.textareaContainer {
-    position: relative;
+.input {
+
 }
 
 .textarea {
@@ -21,6 +22,7 @@
 
 .errorMessage {
     position: absolute;
+    top: 0;
     right: 0;
     color: #f63939;
     font-weight: bold;
