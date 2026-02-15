@@ -1,0 +1,32 @@
+.formControl {
+
+}
+
+.textareaContainer {
+    position: relative;
+}
+
+.textarea {
+    width: 99%;
+    /*height: 100px;*/
+    padding: 10px;
+    border-radius: 10px;
+    resize: none;
+}
+
+.error {
+    border: 2px solid #bc3636;
+    background-color: rgb(87, 73, 73);
+}
+
+.errorMessage {
+    position: absolute;
+    right: 0;
+    color: #f63939;
+    font-weight: bold;
+    z-index: 999;
+
+    &::before {
+        content: "🐞 ";
+    }
+}

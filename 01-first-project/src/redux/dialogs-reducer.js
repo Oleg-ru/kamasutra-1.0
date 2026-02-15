@@ -39,7 +39,6 @@ const initialState = {
         {id: 2, name: 'Anton', avatar: "https://cdn-icons-png.flaticon.com/512/4792/4792944.png"},
         {id: 3, name: 'Anastasia',avatar: "https://img.freepik.com/free-vector/woman-with-long-dark-hair_1308-176666.jpg"},
     ],
-    newMessageText: 'New message here....'
 }
 
 const dialogsReducer = (state = initialState, action) => {
@@ -48,21 +47,13 @@ const dialogsReducer = (state = initialState, action) => {
         case ADD_MESSAGE: {
             const newMessage = {
                 id: crypto.randomUUID(),
-                message: state.newMessageText,
+                message: action.newTextMessage,
                 isSelf: true,
                 avatar: "https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174669.jpg",
             };
             return {
                 ...state,
                 messages: [...state.messages, newMessage],
-                newMessageText: ''
-            };
-        }
-
-        case UPDATE_NEW_MESSAGE_TEXT: {
-            return {
-                ...state,
-                newMessageText: action.newText
             };
         }
 
@@ -71,8 +62,9 @@ const dialogsReducer = (state = initialState, action) => {
     }
 };
 
-export const addMessageActionCreator = () => ({
-    type: ADD_MESSAGE
+export const addMessageActionCreator = (newTextMessage) => ({
+    type: ADD_MESSAGE,
+    newTextMessage
 });
 export const updateNewMessageTextActionCreator = (text) => ({
     type: UPDATE_NEW_MESSAGE_TEXT,

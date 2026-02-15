@@ -1,42 +1,60 @@
-import React  from 'react';
+import React from 'react';
 import styles from './MyPosts.module.css'
 import Post from "./Post/Post.jsx";
+import {Form, Field} from 'react-final-form'
+import {maxLengthCreator, requiredField} from "../../../utils/validators/validators.js";
+import FormControls from "../../common/FormControls/FormControls.jsx";
 
 function MyPosts(props) {
 
     const {
         profilePage: {
             posts,
-            newPostText,
         },
         addPost,
-        updateNewPostText,
     } = props;
-
-    const onAddPost = () => {
-        addPost()
-    }
-
-    const onPostChange = (e) => {
-        updateNewPostText(e.target.value)
-    };
 
     return (
         <div className={styles.posts}>
             <div>
                 <h3 className={styles.head}>My posts</h3>
-                <div>
-                    <div>
-                        <textarea className={styles.textarea}
-                                  value={newPostText}
-                                  onChange={onPostChange}
-                        />
-                    </div>
-                    <button onClick={onAddPost}>Add post</button>
-                </div>
+                <PostForm addPost={addPost}/>
             </div>
-            {posts.map(({id, message, likeCount}) => <Post key={id} message={message} likeCount={likeCount} />)}
+            {posts.map(({id, message, likeCount}) => <Post key={id} message={message} likeCount={likeCount}/>)}
         </div>
+    );
+}
+
+function PostForm(props) {
+
+    const onSubmit = (value, form) => {
+        props.addPost(value.newPostMessage);
+        form.restart();
+    }
+
+    const composeValidators = (...validators) => value =>
+        validators.reduce((error, validator) => error || validator(value), undefined);
+
+    const FormControlsCustom = React.useCallback((props) => {
+        return <FormControls {...props} styles={{[styles.textarea]: true}} />;
+    }, []);
+
+    return (
+        <Form onSubmit={onSubmit}
+              render={({handleSubmit, form}) => (
+                  <form onSubmit={(event) => handleSubmit(event, form)}>
+                      <div>
+                          <Field name="newPostMessage"
+                                 component={FormControlsCustom}
+                                 placeholder="О чем хочешь рассказать?"
+                                 validate={composeValidators(requiredField, maxLengthCreator(10))}
+                          />
+                      </div>
+                      <button type="submit">Add post</button>
+                  </form>
+              )
+        }
+        />
     );
 }
 

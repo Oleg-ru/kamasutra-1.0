@@ -11,9 +11,5 @@
 }
 
 .textarea {
-    width: 99%;
     height: 100px;
-    padding: 10px;
-    border-radius: 10px;
-    resize: none;
 }

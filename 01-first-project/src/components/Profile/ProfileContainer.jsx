@@ -3,7 +3,6 @@ import Profile from "./Profile.jsx";
 import {connect} from "react-redux";
 import {getStatus, getUserProfile, updateStatus} from "../../redux/profile-reducer.js";
 import {useParams} from "react-router-dom";
-import {withAuthRedirect} from "../../hoc/WithAuthRedirect.jsx";
 import {compose} from "redux";
 
 export function withRouter(WrappedComponent){
