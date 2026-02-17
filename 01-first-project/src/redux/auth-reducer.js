@@ -15,7 +15,6 @@ const authReducer = (state = initState, action) => {
             return {
                 ...state,
                 ...action.data,
-                isAuth: true,
             }
         }
         default:
@@ -23,9 +22,9 @@ const authReducer = (state = initState, action) => {
     }
 };
 
-export const setAuthUserData = (id, email, login) => ({
+export const setAuthUserData = (id, email, login, isAuth) => ({
     type: SET_USER_DATA,
-    data: {id, email, login}
+    data: {id, email, login, isAuth}
 });
 
 //санки
@@ -35,10 +34,51 @@ export const getAuthUserData = () => {
             .then((data) => {
                 if (data.resultCode === 0) {
                     const {id, email, login} = data.data;
-                    dispatch(setAuthUserData(id, email, login));
+                    dispatch(setAuthUserData(id, email, login, true));
                 }
             }).catch((e) => {
             console.log("Ошибка при авторизации: " + e)
+        })
+    }
+};
+
+//костыль, т.к куки не работают. Что делает: пихает полученный токен в auth/me
+const getAuthUserDataPostLogin = (token) => {
+    return (dispatch) => {
+        authAPI.authMePostLogin(token)
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    const {id, email, login} = data.data;
+                    dispatch(setAuthUserData(id, email, login, true));
+                }
+            }).catch((e) => {
+            console.log("Ошибка при авторизации: " + e)
+        })
+    }
+};
+
+export const login = (email, password, rememberMe) => {
+    return (dispatch) => {
+        authAPI.login(email, password, rememberMe)
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    dispatch(getAuthUserDataPostLogin(data.data.token))
+                }
+            }).catch((e) => {
+            console.log("Ошибка логинизации: " + e)
+        })
+    }
+};
+
+export const logout = () => {
+    return (dispatch) => {
+        authAPI.logout()
+            .then((data) => {
+                if (data.resultCode === 0) {
+                    dispatch(setAuthUserData(null, null, null, false))
+                }
+            }).catch((e) => {
+            console.log("Ошибка логинизации: " + e)
         })
     }
 };

@@ -9,7 +9,9 @@ function Header(props) {
                 src="https://e7.pngegg.com/pngimages/779/61/png-clipart-logo-idea-cute-eagle-leaf-logo-thumbnail.png"
                 alt="logo"/>
             <div className={styles.loginContainer}>
-                {props.isAuth ? props.login : <NavLink to={'/login'} >Login</NavLink>}
+                {props.isAuth
+                    ? <div>{props.login} <button onClick={props.logout}>Logout</button></div>
+                    :<NavLink to={'/login'} >Login</NavLink>}
             </div>
         </header>
     );

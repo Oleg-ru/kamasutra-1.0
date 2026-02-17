@@ -34,6 +34,27 @@ export const authAPI = {
     authMe () {
         return instance.get(`/auth/me`)
             .then(response => response.data)
+    },
+
+    //авторизация после логина, пихает токен (полученный из login) в метод авторизован ли я
+    authMePostLogin (token) {
+        return axios.get(`${API_BASE}/auth/me`, {
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "API-KEY": `${import.meta.env.VITE_API_KEY}`,
+            }
+        })
+            .then(response => response.data)
+    },
+
+    login (email, password, rememberMe = false) {
+        return instance.post(`/auth/login`, {email, password, rememberMe})
+            .then(response => response.data)
+    },
+
+    logout () {
+        return instance.delete(`/auth/login`)
+            .then(response => response.data)
     }
 }
 
