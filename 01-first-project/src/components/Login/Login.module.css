@@ -8,3 +8,10 @@
         display: block;
     }
 }
+
+.errorSubmit {
+    border: 2px solid red;
+    border-radius: 5px;
+    padding: 5px;
+    width: max-content;
+}

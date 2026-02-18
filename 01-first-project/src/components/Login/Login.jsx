@@ -6,6 +6,7 @@ import {FormControls} from "../common/FormControls/FormControls.jsx";
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer.js";
 import {Navigate} from "react-router";
+import { FORM_ERROR } from 'final-form'
 
 function Login(props) {
     return (
@@ -18,10 +19,27 @@ function Login(props) {
 
 function LoginForm(props) {
 
-    const onSubmit = ({email, password, rememberMe}) => {
-        props.login(email, password, rememberMe)
-        console.log(email, password, rememberMe)
-        console.log("Submited")
+    const onSubmit = async values =>  {
+
+        return new Promise((resolve, reject) => {
+            const getError = (response) => {
+                if (response && response[FORM_ERROR]) {
+                    resolve(response);
+                } else if (response && response.messages && response.messages.length > 0) {
+                    resolve({ [FORM_ERROR]: response.messages.join(', ') });
+                } else {
+                    resolve({ [FORM_ERROR]: 'Login Failed' });
+                }
+            };
+            
+            const loginPromise = props.login(values.email, values.password, values?.rememberMe ?? false, getError);
+            // Проверяем, что login возвращает промис
+            if (loginPromise && typeof loginPromise.catch === 'function') {
+                loginPromise.catch(() => {
+                    resolve({ [FORM_ERROR]: 'Network error. Try again.' });
+                });
+            }
+        });
     };
 
     const composeValidators = (...validators) => value =>
@@ -33,8 +51,9 @@ function LoginForm(props) {
 
     return (
         <Form onSubmit={onSubmit}
-              render={({handleSubmit }) => (
+              render={({submitError, handleSubmit, submitting }) => (
                   <form onSubmit={handleSubmit}>
+                      {submitError && <div className={styles.errorSubmit}>Error: {submitError}</div>}
                       <div>
                           <label>
                               Login
@@ -65,7 +84,7 @@ function LoginForm(props) {
                               />
                           </label>
                       </div>
-                      <button type="submit">Login</button>
+                      <button type="submit" disabled={submitting}>Login</button>
                   </form>
               )}
         />

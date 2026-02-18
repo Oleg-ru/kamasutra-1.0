@@ -56,13 +56,53 @@ const getAuthUserDataPostLogin = (token) => {
         })
     }
 };
-
+/* //TODO
+С заделом на будущее сделать возврат промиса:
 export const login = (email, password, rememberMe) => {
+    return async (dispatch) => {
+        try {
+            const data = await authAPI.login(email, password, rememberMe);
+
+            if (data.resultCode === 0) {
+                // Успешный логин → получаем данные пользователя
+                dispatch(getAuthUserDataPostLogin(data.data.token));
+                return { success: true };
+            } else {
+                // Ошибка с сервера (например, неверный пароль)
+                const message = data.messages?.length ? data.messages[0] : 'Login failed';
+                return { success: false, message };
+            }
+        } catch (error) {
+            // Сетевая ошибка
+            return { success: false, message: 'Network error. Please try again.' };
+        }
+    };
+};
+
+и в форме сделать:
+
+const onSubmit = async (values) => {
+        // Вызываем login и ждём результата
+        const result = await dispatch(login(values.email, values.password, values.rememberMe));
+
+        if (!result.success) {
+            // Возвращаем ошибку в форму
+            return { [FORM_ERROR]: result.message };
+        }
+
+        // Успех — форма сама сбросится
+    };
+ */
+export const login = (email, password, rememberMe, setError) => {
+    debugger
     return (dispatch) => {
         authAPI.login(email, password, rememberMe)
             .then((data) => {
                 if (data.resultCode === 0) {
-                    dispatch(getAuthUserDataPostLogin(data.data.token))
+                    dispatch(getAuthUserDataPostLogin(data.data.token));
+                }
+                else {
+                    setError(data);
                 }
             }).catch((e) => {
             console.log("Ошибка логинизации: " + e)
