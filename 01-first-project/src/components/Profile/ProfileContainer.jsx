@@ -24,17 +24,14 @@ class ProfileContainer extends React.Component {
 
         // Определяем ID профиля: из URL или свой
         let profileId = userId || authorizedUserId;
-        debugger
         if (profileId) {
             this.props.getUserProfile(profileId);
             this.props.getStatus(profileId);
         }
-        debugger
     };
 
     render() {
         const { isAuth, authorizedUserId } = this.props;
-        debugger
         // 🔴 Проверяем авторизацию ДО рендера
         if (this.props.match.params.userId) {
             return <Profile {...this.props} />
