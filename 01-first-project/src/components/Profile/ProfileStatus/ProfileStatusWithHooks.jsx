@@ -1,6 +1,6 @@
 import styles from './ProfileStatus.module.css'
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const ProfileStatusWithHooks = (props) => {
     const {
@@ -9,7 +9,11 @@ const ProfileStatusWithHooks = (props) => {
     } = props;
 
     const [status, setStatus] = useState(inputStatus);
-    const [editMode, setEditMode] = useState(false)
+    const [editMode, setEditMode] = useState(false);
+
+    useEffect(() => {
+        setStatus(inputStatus);
+    }, [inputStatus]);
 
 
     const activateMode = () => {
