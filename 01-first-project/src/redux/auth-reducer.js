@@ -94,7 +94,6 @@ const onSubmit = async (values) => {
     };
  */
 export const login = (email, password, rememberMe, setError) => {
-    debugger
     return (dispatch) => {
         authAPI.login(email, password, rememberMe)
             .then((data) => {

@@ -3,6 +3,7 @@ import styles from './ProfileInfo.module.css'
 import Preloader from "../../common/Preloader/Preloader.jsx";
 import Contact from "./Contact/Contact.jsx";
 import ProfileStatus from "../ProfileStatus/ProfileStatus.jsx";
+import ProfileStatusWithHooks from "../ProfileStatus/ProfileStatusWithHooks.jsx";
 
 function ProfileInfo(props) {
 
@@ -41,7 +42,7 @@ function ProfileInfo(props) {
                 <img className={styles.profileImg} src="https://assets.monica.im/tools-web/_next/static/media/mobile_upscale.e93d7497.webp"
                      alt=""/>
             </div>
-            <ProfileStatus status={status} updateStatus={updateStatus}/>
+            <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             <div className={styles.description}>
                 <img className={styles.myAvatar} src={props.profile.photos.large ?? 'https://upload.wikimedia.org/wikipedia/commons/2/2f/No-photo-m.png'} alt="avatar"/>
                 <div className={styles.descriptionProfile}>

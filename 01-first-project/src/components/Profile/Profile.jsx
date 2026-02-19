@@ -10,7 +10,6 @@ function Profile(props) {
         status,
         updateStatus
     } = props;
-
     return (
         <div>
             <ProfileInfo profile={profile}
