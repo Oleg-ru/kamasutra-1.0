@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './MyPosts.module.css'
 import Post from "./Post/Post.jsx";
-import {Form, Field} from 'react-final-form'
+import {Field, Form} from 'react-final-form'
 import {maxLengthCreator, requiredField} from "../../../utils/validators/validators.js";
 import {FormControls} from "../../common/FormControls/FormControls.jsx";
 
-function MyPosts(props) {
-
+const MyPosts = React.memo((props) => {
+    console.log("MyPost render")
     const {
         profilePage: {
             posts,
@@ -23,7 +23,7 @@ function MyPosts(props) {
             {posts.map(({id, message, likeCount}) => <Post key={id} message={message} likeCount={likeCount}/>)}
         </div>
     );
-}
+});
 
 function PostForm(props) {
 
