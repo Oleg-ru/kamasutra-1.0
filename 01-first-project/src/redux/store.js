@@ -81,7 +81,6 @@ let store = {
 }
 
 store.dispatch = store.dispatch.bind(store)
-
 window.store = store;
 
 export default store;

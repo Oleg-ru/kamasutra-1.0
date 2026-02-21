@@ -75,30 +75,19 @@ export const deletePost = (postId) => ({
 });
 
 //санки
-export const getUserProfile = (profileId) => {
-    return (dispatch) => {
-        profileAPI.getProfile(profileId)
-            .then((data) => {
-                dispatch(setUserProfile(data));
-            })
-    }
+export const getUserProfile = (profileId) => async (dispatch) => {
+    const response = await profileAPI.getProfile(profileId)
+    dispatch(setUserProfile(response));
 }
-export const getStatus = (userId) => {
-    return (dispatch) => {
-        profileAPI.getStatus(userId)
-            .then((data) => {
-                dispatch(setStatus(data));
-            })
-    }
+export const getStatus = (userId) => async (dispatch) => {
+    const response = await profileAPI.getStatus(userId)
+    dispatch(setStatus(response));
 }
-export const updateStatus = (status) => {
-    return (dispatch) => {
-        profileAPI.updateStatus(status)
-            .then((data) => {
-                if (data.resultCode === 0) {
-                    dispatch(setStatus(data));
-                }
-            })
+
+export const updateStatus = (status) => async (dispatch) => {
+    const response = await profileAPI.updateStatus(status)
+    if (response.resultCode === 0) {
+        dispatch(setStatus(response));
     }
 }
 

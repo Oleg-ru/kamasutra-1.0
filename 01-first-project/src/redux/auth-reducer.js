@@ -1,6 +1,6 @@
 import {authAPI} from "../api/api.js";
 
-const SET_USER_DATA = 'SET-USER-DATA';
+const SET_USER_DATA = 'auth/SET-USER-DATA';
 
 const initState = {
     id: null,
@@ -28,17 +28,12 @@ export const setAuthUserData = (id, email, login, isAuth) => ({
 });
 
 //санки
-export const getAuthUserData = () => {
-    return (dispatch) => {
-        return authAPI.authMe()
-            .then((data) => {
-                if (data.resultCode === 0) {
-                    const {id, email, login} = data.data;
-                    dispatch(setAuthUserData(id, email, login, true));
-                }
-            }).catch((e) => {
-            console.log("Ошибка при авторизации: " + e)
-        })
+export const getAuthUserData = () => async (dispatch) => {
+    const response = await authAPI.authMe();
+
+    if (response.resultCode === 0) {
+        const {id, email, login} = response.data;
+        dispatch(setAuthUserData(id, email, login, true));
     }
 };
 
@@ -93,32 +88,21 @@ const onSubmit = async (values) => {
         // Успех — форма сама сбросится
     };
  */
-export const login = (email, password, rememberMe, setError) => {
-    return (dispatch) => {
-        authAPI.login(email, password, rememberMe)
-            .then((data) => {
-                if (data.resultCode === 0) {
-                    dispatch(getAuthUserDataPostLogin(data.data.token));
-                }
-                else {
-                    setError(data);
-                }
-            }).catch((e) => {
-            console.log("Ошибка логинизации: " + e)
-        })
+export const login = (email, password, rememberMe, setError) => async (dispatch) => {
+    const response = await authAPI.login(email, password, rememberMe);
+
+    if (response.resultCode === 0) {
+        dispatch(getAuthUserDataPostLogin(response.data.token));
+    } else {
+        setError(response);
     }
 };
 
-export const logout = () => {
-    return (dispatch) => {
-        authAPI.logout()
-            .then((data) => {
-                if (data.resultCode === 0) {
-                    dispatch(setAuthUserData(null, null, null, false))
-                }
-            }).catch((e) => {
-            console.log("Ошибка логинизации: " + e)
-        })
+export const logout = () => async (dispatch) => {
+    const response = await authAPI.logout();
+
+    if (response.resultCode === 0) {
+        dispatch(setAuthUserData(null, null, null, false))
     }
 };
 
