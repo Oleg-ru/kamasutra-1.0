@@ -11,6 +11,7 @@ function Users(props) {
                        onPageChanged={props.onPageChanged}
                        totalUsersCount={props.totalUsersCount}
                        pageSize={props.pageSize}
+                       portionSize={10}
             />
             <div className={styles.usersContainer}>
                 {props.users && props.users.map(({id, followed, name, status, photos: {small}}) => (

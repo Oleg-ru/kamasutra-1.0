@@ -1,8 +1,9 @@
 .paginationContainer {
+    padding: 10px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    background-color: #7fa1e3;
 }
 
 .paginationContainer button {
