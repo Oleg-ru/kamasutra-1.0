@@ -1,28 +1,17 @@
 import React from 'react';
 import User from "./User/User.jsx";
 import styles from './Users.module.css'
-import {toggleIsFollowingProgress} from "../../redux/users-reducer.js";
+import Paginator from "../common/Paginator/Paginator.jsx";
 
 function Users(props) {
 
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    const pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-    }
-
     return (
         <>
-            <div className={styles.paginationContainer}>
-                {pages.map(page => (
-                    <button className={props.currentPage === page ? styles.currentPage : ''}
-                            key={page}
-                            onClick={() => props.onPageChanged(page)}
-                    >
-                        {page}
-                    </button>
-                ))}
-            </div>
+            <Paginator currentPage={props.currentPage}
+                       onPageChanged={props.onPageChanged}
+                       totalUsersCount={props.totalUsersCount}
+                       pageSize={props.pageSize}
+            />
             <div className={styles.usersContainer}>
                 {props.users && props.users.map(({id, followed, name, status, photos: {small}}) => (
                     <User key={id}
