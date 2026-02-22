@@ -6,15 +6,18 @@ import News from "./components/News/News.jsx";
 import Music from "./components/Music/Music.jsx";
 import Settings from "./components/Settings/Settings.jsx";
 import Friends from "./components/Friends/Friends.jsx";
-import DialogsContainer from "./components/Dialogs/DialogsContainer.jsx";
 import UsersContainer from "./components/Users/UsersContainer.jsx";
-import ProfileContainer from "./components/Profile/ProfileContainer.jsx";
 import HeaderContainer from "./components/Header/HeaderContainer.jsx";
 import Login from "./components/Login/Login.jsx";
-import {Component} from "react";
+import {Component, lazy, Suspense} from "react";
 import {connect} from "react-redux";
 import {initializeApp} from "./redux/app-reducer.js";
 import Preloader from "./components/common/Preloader/Preloader.jsx";
+import AlterPreloader from "./components/common/Preloader/AlterPreloader/AlterPreloader.jsx";
+// import DialogsContainer from "./components/Dialogs/DialogsContainer.jsx";
+// import ProfileContainer from "./components/Profile/ProfileContainer.jsx";
+const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer.jsx'));
+const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer.jsx'));
 
 class App extends Component {
 
@@ -25,7 +28,7 @@ class App extends Component {
     render() {
 
         if (!this.props.initialized) {
-            return <div className={styles.center}><Preloader /></div>
+            return <div className={styles.center}><Preloader/></div>
         }
 
         const {
@@ -37,6 +40,7 @@ class App extends Component {
                 <HeaderContainer/>
                 <Navbar store={store}/>
                 <div className='app-wrapper-content'>
+                    <Suspense fallback={<AlterPreloader />}>
                     <Routes>
                         <Route path='profile/:userId?' element={<ProfileContainer/>}/>
                         <Route path='dialogs/*' element={<DialogsContainer/>}/>
@@ -47,6 +51,7 @@ class App extends Component {
                         <Route path='settings' element={<Settings/>}/>
                         <Route path='friends' element={<Friends/>}/>
                     </Routes>
+                    </Suspense>
                 </div>
             </div>
         )
