@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://oleg-ru.github.io/demo-samurai-1.0",
+  "homepage": "https://oleg-ru.github.io/kamasutra-1.0",
+  "browser": "./index.html",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
