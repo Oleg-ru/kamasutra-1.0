@@ -9,7 +9,9 @@ import {Provider} from "react-redux";
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <BrowserRouter
+            // basename={process.env.PUBLIC_URL}
+        >
             <Provider store={store}>
                 <App/>
             </Provider>

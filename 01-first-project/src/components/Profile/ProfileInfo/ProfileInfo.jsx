@@ -2,11 +2,9 @@ import React from 'react';
 import styles from './ProfileInfo.module.css'
 import Preloader from "../../common/Preloader/Preloader.jsx";
 import Contact from "./Contact/Contact.jsx";
-import ProfileStatus from "../ProfileStatus/ProfileStatus.jsx";
 import ProfileStatusWithHooks from "../ProfileStatus/ProfileStatusWithHooks.jsx";
 
 function ProfileInfo(props) {
-
     if (!props.profile) {
         return <Preloader />
     }
@@ -36,6 +34,12 @@ function ProfileInfo(props) {
         return contactsArray;
     };
 
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            props.savePhoto(e.target.files[0])
+        }
+    };
+
     return (
         <>
             <div>
@@ -44,6 +48,7 @@ function ProfileInfo(props) {
             </div>
             <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             <div className={styles.description}>
+                {props.isOwner && <input className={styles.loadFileInput} type="file" onChange={onMainPhotoSelected}/>}
                 <img className={styles.myAvatar} src={props.profile.photos.large ?? 'https://upload.wikimedia.org/wikipedia/commons/2/2f/No-photo-m.png'} alt="avatar"/>
                 <div className={styles.descriptionProfile}>
                     <p className={styles.fullName}>👋 Привет, я {fullName}</p>

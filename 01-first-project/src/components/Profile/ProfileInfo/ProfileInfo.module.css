@@ -6,13 +6,19 @@
 }
 
 .description {
+    position: relative;
     display: flex;
     gap: 1rem;
-    padding: 20px;
+    padding: 30px;
     margin-bottom: 50px;
     border-bottom: 25px solid #646cff;
     border-top: 25px solid #646cff;
     border-radius: 50px;
+}
+
+.loadFileInput {
+    position: absolute;
+    top: 5px
 }
 
 .fullName {
