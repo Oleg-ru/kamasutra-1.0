@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from "./Profile.jsx";
 import { connect } from "react-redux";
-import {getStatus, getUserProfile, savePhoto, updateStatus} from "../../redux/profile-reducer.js";
+import {getStatus, getUserProfile, savePhoto, saveProfile, updateStatus} from "../../redux/profile-reducer.js";
 import { useNavigate, useParams } from "react-router-dom";
 import { compose } from "redux";
 import { Navigate } from "react-router";
@@ -34,7 +34,7 @@ class ProfileContainer extends React.Component {
         const { isAuth, authorizedUserId } = this.props;
         // 🔴 Проверяем авторизацию ДО рендера
         if (this.props.match.params.userId) {
-            return <Profile {...this.props} isOwner={!this.props.match.params.userId} savePhoto={this.props.savePhoto}/>
+            return <Profile {...this.props} isOwner={!this.props.match.params.userId} savePhoto={this.props.savePhoto} />
         }
         if (!isAuth) {
             return <Navigate to="/login" replace />;
@@ -55,6 +55,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto }),
+    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, savePhoto, saveProfile }),
     withRouter,
 )(ProfileContainer);

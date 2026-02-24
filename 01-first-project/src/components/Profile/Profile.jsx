@@ -9,7 +9,8 @@ function Profile(props) {
         status,
         updateStatus,
         isOwner,
-        savePhoto
+        savePhoto,
+        saveProfile
     } = props;
     return (
         <div>
@@ -18,6 +19,7 @@ function Profile(props) {
                          updateStatus={updateStatus}
                          isOwner={isOwner}
                          savePhoto={savePhoto}
+                         saveProfile={saveProfile}
             />
             <MyPostsContainer />
         </div>

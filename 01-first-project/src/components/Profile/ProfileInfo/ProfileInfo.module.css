@@ -21,6 +21,12 @@
     top: 5px
 }
 
+.editProfile {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
 .fullName {
 
 }
