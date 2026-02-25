@@ -12,7 +12,7 @@ function Login(props) {
     return (
         <div>
             <h1>Login</h1>
-            <LoginForm login={props.login} isAuth={props.isAuth}/>
+            <LoginForm login={props.login} isAuth={props.isAuth} captchaUrl={props.captchaUrl}/>
         </div>
     );
 }
@@ -20,7 +20,6 @@ function Login(props) {
 function LoginForm(props) {
 
     const onSubmit = async values =>  {
-
         return new Promise((resolve, reject) => {
             const getError = (response) => {
                 if (response && response[FORM_ERROR]) {
@@ -32,7 +31,7 @@ function LoginForm(props) {
                 }
             };
             
-            const loginPromise = props.login(values.email, values.password, values?.rememberMe ?? false, getError);
+            const loginPromise = props.login(values.email, values.password, values?.rememberMe ?? false, getError, values.captcha);
             // Проверяем, что login возвращает промис
             if (loginPromise && typeof loginPromise.catch === 'function') {
                 loginPromise.catch(() => {
@@ -84,6 +83,18 @@ function LoginForm(props) {
                               />
                           </label>
                       </div>
+                      {props.captchaUrl && <img src={props.captchaUrl} alt="captcha"/>}
+                      {
+                          props.captchaUrl && <div>
+                          <label>
+                              <Field name="captcha"
+                                     component={FormControls}
+                                     placeholder="Captcha"
+                                     validate={composeValidators(requiredField)}
+                              />
+                          </label>
+                      </div>
+                      }
                       <button type="submit" disabled={submitting}>Login</button>
                   </form>
               )}
@@ -92,6 +103,7 @@ function LoginForm(props) {
 }
 
 const mapStateToProps = (state) => ({
+    captchaUrl: state.auth.captchaUrl,
     isAuth: state.auth.isAuth
 });
 

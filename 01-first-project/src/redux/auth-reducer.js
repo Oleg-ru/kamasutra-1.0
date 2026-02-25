@@ -1,12 +1,14 @@
-import {authAPI} from "../api/api.js";
+import {authAPI, securityAPI} from "../api/api.js";
 
 const SET_USER_DATA = 'auth/SET-USER-DATA';
+const GET_CAPTCHA_URL_SUCCESS = 'auth/GET-CAPTCHA-URL-SUCCESS';
 
 const initState = {
     id: null,
     email: null,
     login: null,
     isAuth: false,
+    captchaUrl: null,
 }
 
 const authReducer = (state = initState, action) => {
@@ -17,6 +19,12 @@ const authReducer = (state = initState, action) => {
                 ...action.data,
             }
         }
+        case GET_CAPTCHA_URL_SUCCESS: {
+            return {
+                ...state,
+                captchaUrl: action.captchaUrl,
+            }
+        }
         default:
             return state;
     }
@@ -25,6 +33,11 @@ const authReducer = (state = initState, action) => {
 export const setAuthUserData = (id, email, login, isAuth) => ({
     type: SET_USER_DATA,
     data: {id, email, login, isAuth}
+});
+
+export const getCaptchaUrlSuccess = (captchaUrl) => ({
+    type: GET_CAPTCHA_URL_SUCCESS,
+    captchaUrl
 });
 
 //санки
@@ -88,14 +101,24 @@ const onSubmit = async (values) => {
         // Успех — форма сама сбросится
     };
  */
-export const login = (email, password, rememberMe, setError) => async (dispatch) => {
-    const response = await authAPI.login(email, password, rememberMe);
-
+export const login = (email, password, rememberMe, setError, captcha) => async (dispatch) => {
+    const response = await authAPI.login(email, password, rememberMe, captcha);
+    debugger
     if (response.resultCode === 0) {
         dispatch(getAuthUserDataPostLogin(response.data.token));
     } else {
+        if(response.resultCode === 10) {
+
+            dispatch(getCaptchaUrl())
+        }
         setError(response);
     }
+};
+
+export const getCaptchaUrl = () => async (dispatch) => {
+    const response = await securityAPI.getCaptchaUrl();
+    const captchaUrl = response.data.url;
+    dispatch(getCaptchaUrlSuccess(captchaUrl))
 };
 
 export const logout = () => async (dispatch) => {
