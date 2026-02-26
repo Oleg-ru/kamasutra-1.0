@@ -21,8 +21,17 @@ const ProfileContainer = lazy(() => import('./components/Profile/ProfileContaine
 
 class App extends Component {
 
+    catchRejectionEvent = (promiseRejectionEvent) => {
+        alert("Произошла непредвиденная ошибка!")
+    }
+
     componentDidMount() {
         this.props.initializeApp();
+        window.addEventListener('unhandledrejection', this.catchRejectionEvent)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('unhandledrejection', this.catchRejectionEvent)
     }
 
     render() {
@@ -50,6 +59,7 @@ class App extends Component {
                         <Route path='music' element={<Music/>}/>
                         <Route path='settings' element={<Settings/>}/>
                         <Route path='friends' element={<Friends/>}/>
+                        <Route path='*' element={<div>Not found 404</div>}/>
                     </Routes>
                     </Suspense>
                 </div>
